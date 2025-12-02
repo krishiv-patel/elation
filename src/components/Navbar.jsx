@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
@@ -6,23 +7,11 @@ import './Navbar.css';
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('home');
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
-
-            // Update active section based on scroll position
-            const sections = ['home', 'about', 'services', 'industries', 'contact'];
-            const current = sections.find(section => {
-                const element = document.getElementById(section);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    return rect.top <= 100 && rect.bottom >= 100;
-                }
-                return false;
-            });
-            if (current) setActiveSection(current);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -30,19 +19,21 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Services', href: '#services' },
-        { name: 'Industries', href: '#industries' },
-        { name: 'Contact', href: '#contact' }
+        { name: 'Home', path: '/' },
+        { name: 'Services', path: '/services' },
+        { name: 'Equipment Manufacturing', path: '/equipment-manufacturing' },
+        { name: 'Automation', path: '/services/automation' },
+        { name: 'Advance Technologies', path: '/advance-technologies' },
+        { name: 'Careers', path: '/careers' },
+        { name: 'Contact Us', path: '/contact' }
     ];
 
-    const handleNavClick = (href) => {
-        setIsMobileMenuOpen(false);
-        const element = document.querySelector(href);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+    const isActive = (path) => {
+        if (path === location.pathname) return true;
+        if (path === '/' && location.pathname !== '/') return false;
+        // Prevent 'Services' from being active when 'Automation' is active
+        if (path === '/services' && location.pathname.startsWith('/services/automation')) return false;
+        return location.pathname.startsWith(path);
     };
 
     return (
@@ -53,48 +44,39 @@ const Navbar = () => {
         >
             <div className="container navbar-container">
                 {/* Logo */}
-                <motion.a
-                    href="#home"
+                <Link
+                    to="/"
                     className="navbar-logo"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        handleNavClick('#home');
-                    }}
+                    onClick={() => setIsMobileMenuOpen(false)}
                 >
-                    <img src="/logo.png" alt="Elation" />
+                    <motion.img
+                        src="/logo.png"
+                        alt="Elation"
+                        whileHover={{ rotate: 10, scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                    />
                     <span className="logo-text">Elation</span>
-                </motion.a>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <ul className="navbar-links desktop-only">
                     {navLinks.map((link) => (
                         <li key={link.name}>
-                            <a
-                                href={link.href}
-                                className={`nav-link ${activeSection === link.href.slice(1) ? 'active' : ''}`}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleNavClick(link.href);
-                                }}
+                            <Link
+                                to={link.path}
+                                className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
                             >
                                 {link.name}
-                                {activeSection === link.href.slice(1) && (
+                                {isActive(link.path) && (
                                     <motion.div
                                         layoutId="activeSection"
                                         className="active-indicator"
                                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                                     />
                                 )}
-                            </a>
+                            </Link>
                         </li>
                     ))}
-                    <li>
-                        <a href="/contact" className="btn btn-primary btn-small">
-                            Get Quote
-                        </a>
-                    </li>
                 </ul>
 
                 {/* Mobile Menu Button */}
@@ -125,16 +107,13 @@ const Navbar = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.1 }}
                                 >
-                                    <a
-                                        href={link.href}
-                                        className={`mobile-nav-link ${activeSection === link.href.slice(1) ? 'active' : ''}`}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleNavClick(link.href);
-                                        }}
+                                    <Link
+                                        to={link.path}
+                                        className={`mobile-nav-link ${isActive(link.path) ? 'active' : ''}`}
+                                        onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         {link.name}
-                                    </a>
+                                    </Link>
                                 </motion.li>
                             ))}
                         </ul>

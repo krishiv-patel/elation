@@ -1,29 +1,46 @@
-import PageHero from '../../components/shared/PageHero';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaPencilRuler, FaCheckCircle, FaCube, FaDrawPolygon } from 'react-icons/fa';
+import PageHero from '../../components/shared/PageHero';
+import { FaPencilRuler, FaCheckCircle, FaCube, FaDrawPolygon, FaWaveSquare, FaCalculator, FaChartLine, FaThermometerHalf, FaWind, FaFlask } from 'react-icons/fa';
 import './ServiceDetail.css';
 
 const Design = () => {
     const features = [
-        '3D Modeling & Simulation',
-        'Detailed Engineering Drawings',
+        '2D & 3D Plant Layout & Piping Drawings',
+        'Process Equipment Manufacturing Drawings',
+        'Pressure Vessel Design (ASME, PD 5500, IS 2825)',
         'Finite Element Analysis (FEA)',
-        'Piping & Instrumentation Diagrams (P&ID)',
-        'Structural Design & Analysis',
-        'Mechanical Design',
-        'Electrical Layout Design',
-        'Technical Documentation'
+        'HVAC Ducting & Cable Tray Layout',
+        'Optimization & Standardization',
+        'Reverse Engineering',
+        'Bill of Materials Preparation'
     ];
 
     const software = [
-        { name: 'AutoCAD / AutoCAD Plant 3D', level: 98 },
+        { name: 'AutoCAD / Inventor', level: 98 },
         { name: 'SolidWorks / CATIA', level: 95 },
-        { name: 'ANSYS (FEA/CFD)', level: 88 },
-        { name: 'Revit MEP', level: 90 }
+        { name: 'Pro/Engineer / Unigraphics', level: 90 },
+        { name: 'SolidEdge / I-Deas', level: 88 },
+        { name: 'Visual LISP / VBA', level: 92 }
     ];
 
+    const feaServices = [
+        'Structural Analysis',
+        'Modal Analysis',
+        'Linear & Non-linear Static Analysis',
+        'Dynamic Analysis',
+        'Thermal Analysis (Steady State & Transient)',
+        'CFD Analysis',
+        'Mould Flow Analysis'
+    ];
+
+    const getFEAIcon = (index) => {
+        const icons = [FaCube, FaWaveSquare, FaCalculator, FaChartLine, FaThermometerHalf, FaWind, FaFlask];
+        return icons[index];
+    };
+
     return (
-        <div className="service-detail-page">
+        <div className="service-detail-page theme-purple">
             <PageHero
                 title="Engineering Design"
                 subtitle="Turning Concepts into Detailed Engineering"
@@ -48,7 +65,7 @@ const Design = () => {
                         <p className="section-description">
                             Our design team combines technical expertise with advanced CAD and simulation tools to deliver precise, efficient, and innovative engineering designs.
                         </p>
-                        <p>
+                        <p className="section-description">
                             From concept sketches to fully detailed 3D models and manufacturing-ready drawings, we provide comprehensive design solutions that transform your ideas into reality.
                         </p>
                     </motion.div>
@@ -65,6 +82,9 @@ const Design = () => {
                                 src="/brain/b6d4a4bb-9e7e-4af4-9d09-c8b3572b678a/engineering_design_workspace_1763708223641.png"
                                 alt="Engineering Design Workspace"
                                 className="service-image"
+                                onError={(e) => {
+                                    e.target.src = 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                                }}
                             />
                             <div className="image-overlay">
                                 <FaCube className="overlay-icon" />
@@ -83,7 +103,7 @@ const Design = () => {
                         viewport={{ once: true }}
                         className="section-header"
                     >
-                        <h2 className="section-title text-center">Design Capabilities</h2>
+                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Design Capabilities</h2>
                         <p className="section-subtitle text-center">
                             Full spectrum of engineering design services
                         </p>
@@ -99,7 +119,9 @@ const Design = () => {
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
                                 className="feature-card"
                             >
-                                <FaCheckCircle className="feature-icon" />
+                                <div className="feature-icon-wrapper">
+                                    <FaCheckCircle className="feature-icon" />
+                                </div>
                                 <h3>{feature}</h3>
                             </motion.div>
                         ))}
@@ -115,8 +137,8 @@ const Design = () => {
                     viewport={{ once: true }}
                     className="section-header"
                 >
-                    <h2 className="section-title text-center">
-                        <FaDrawPolygon /> Design Software Mastery
+                    <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>
+                        <FaDrawPolygon className="title-icon" style={{ marginRight: '1rem' }} /> Design Software Mastery
                     </h2>
                     <p className="section-subtitle text-center">
                         Industry-leading CAD and simulation platforms
@@ -141,7 +163,6 @@ const Design = () => {
                                     viewport={{ once: true }}
                                     transition={{ duration: 1, delay: index * 0.2 }}
                                     className="progress-fill"
-                                    style={{ background: 'linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%)' }}
                                 />
                             </div>
                             <span className="progress-label">{sw.level}% Expertise</span>
@@ -150,8 +171,46 @@ const Design = () => {
                 </div>
             </section>
 
+            {/* FEA Services */}
+            <section className="bg-secondary section-padding">
+                <div className="container">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="section-header"
+                    >
+                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Finite Element Analysis Services</h2>
+                        <p className="section-subtitle text-center">
+                            Advanced simulation and analysis capabilities
+                        </p>
+                    </motion.div>
+
+                    <div className="features-grid">
+                        {feaServices.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: index * 0.1 }}
+                                className="feature-card"
+                            >
+                                <div className="feature-icon-wrapper">
+                                    {(() => {
+                                        const IconComponent = getFEAIcon(index);
+                                        return <IconComponent className="feature-icon" />;
+                                    })()}
+                                </div>
+                                <h3>{service}</h3>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Section */}
-            <section className="cta-section" style={{ background: 'linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%)' }}>
+            <section className="cta-section">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -161,7 +220,7 @@ const Design = () => {
                     >
                         <h2>Bring Your Design Vision to Life</h2>
                         <p>Partner with our engineering design experts for your next project</p>
-                        <a href="/contact" className="btn btn-gradient btn-large">
+                        <a href="/contact" className="btn-large">
                             Start Your Project
                         </a>
                     </motion.div>

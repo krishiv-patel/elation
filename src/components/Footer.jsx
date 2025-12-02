@@ -42,7 +42,7 @@ const Footer = () => {
                     </div>
 
                     {/* Quick Links */}
-                    <div className="footer-links">
+                    <div className="footer-links footer-links-quick">
                         <h4>Quick Links</h4>
                         <ul>
                             <li><a href="/">Home</a></li>
@@ -54,7 +54,7 @@ const Footer = () => {
                     </div>
 
                     {/* Services */}
-                    <div className="footer-links">
+                    <div className="footer-links footer-links-services">
                         <h4>Services</h4>
                         <ul>
                             <li><a href="/services/automation">Automation</a></li>

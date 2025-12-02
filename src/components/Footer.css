@@ -243,15 +243,75 @@
 }
 
 @media (max-width: 768px) {
+
+    /* Grid Areas for Mobile */
+    .footer-brand {
+        grid-area: brand;
+    }
+
+    .footer-links-quick {
+        grid-area: links1;
+    }
+
+    .footer-links-services {
+        grid-area: links2;
+    }
+
+    .footer-newsletter {
+        grid-area: newsletter;
+    }
+
+    .footer-contact {
+        grid-area: contact;
+    }
+
+    .footer {
+        padding-bottom: calc(var(--spacing-xl) + 50px);
+    }
+
     .footer-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "brand brand"
+            "links1 links2"
+            "newsletter newsletter"
+            "contact contact";
+        gap: var(--spacing-lg);
+    }
+
+    .footer-brand {
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-newsletter {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .footer-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-links {
+        text-align: center;
+    }
+
+    .footer-links ul {
+        align-items: center;
     }
 
     .footer-bottom {
         flex-direction: column;
         gap: var(--spacing-md);
         text-align: center;
+        padding-bottom: var(--spacing-md);
     }
 
     .scroll-to-top {

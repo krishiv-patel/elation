@@ -1,26 +1,76 @@
-import PageHero from '../../components/shared/PageHero';
+import React from 'react';
 import { motion } from 'framer-motion';
+import PageHero from '../../components/shared/PageHero';
 import { FaCog, FaIndustry, FaCheckCircle, FaRobot } from 'react-icons/fa';
 import './ServiceDetail.css';
 
 const Automation = () => {
     const features = [
-        'PLC & SCADA Programming',
-        'HMI Design & Integration',
-        'Industrial IoT Solutions',
-        'Robotic Process Automation',
-        'Control Panel Design & Fabrication',
-        'Process Instrumentation',
-        'DCS Implementation',
-        'Motion Control Systems'
+        'Control System Design & Panel Manufacturing',
+        'HMI Software & SQL Reporting Integration',
+        '21 CFR Compliance & Batch Solutions (ISA Standards)',
+        'Installation & Commissioning',
+        'Software Upgradations & Legacy H/w Migration',
+        'Remote Connectivity & Monitoring',
+        'Annual Maintenance Contract',
+        '24X7 Technical Support'
     ];
 
     const technologies = [
-        { name: 'Siemens', level: 95 },
-        { name: 'Allen-Bradley', level: 90 },
-        { name: 'Schneider Electric', level: 85 },
-        { name: 'ABB', level: 88 }
+        {
+            name: 'Siemens',
+            level: 95,
+            capabilities: [
+                'SIMATIC S7-1200/1500 PLC Programming',
+                'TIA Portal Software Development',
+                'WinCC HMI & SCADA Solutions',
+                'PROFINET & PROFIBUS Networks',
+                'Safety Integrated Systems',
+                'Distributed I/O Systems'
+            ]
+        },
+        {
+            name: 'Allen-Bradley',
+            level: 90,
+            capabilities: [
+                'ControlLogix & CompactLogix PLCs',
+                'Studio 5000 Programming',
+                'FactoryTalk View HMI/SCADA',
+                'EtherNet/IP Communication',
+                'PowerFlex Drives Integration',
+                'DeviceNet & ControlNet Networks'
+            ]
+        },
+        {
+            name: 'Schneider Electric',
+            level: 85,
+            capabilities: [
+                'Modicon M340/M580 Programming',
+                'Unity Pro & EcoStruxure Software',
+                'Vijeo Citect SCADA Systems',
+                'Modbus TCP/IP Protocol',
+                'Altivar Variable Speed Drives',
+                'CANopen Integration'
+            ]
+        },
+        {
+            name: 'ABB',
+            level: 88,
+            capabilities: [
+                'AC500 PLC Programming',
+                'Control Builder Software',
+                'System 800xA DCS Integration',
+                'Industrial Robotics Programming',
+                'ACS Drive Systems',
+                'FOUNDATION Fieldbus'
+            ]
+        }
     ];
+
+    const getTechnologyIcon = (index) => {
+        const icons = [FaCog, FaRobot, FaIndustry, FaCog];
+        return icons[index];
+    };
 
     return (
         <div className="service-detail-page">
@@ -48,7 +98,7 @@ const Automation = () => {
                         <p className="section-description">
                             Transform your manufacturing processes with our state-of-the-art automation solutions. We specialize in designing, implementing, and optimizing industrial automation systems that drive efficiency and innovation.
                         </p>
-                        <p>
+                        <p className="section-description">
                             From concept to commissioning, our team of experienced engineers delivers turnkey automation solutions tailored to your specific industrial needs. We leverage cutting-edge technologies to create systems that are reliable, scalable, and easy to maintain.
                         </p>
                     </motion.div>
@@ -65,6 +115,9 @@ const Automation = () => {
                                 src="/brain/b6d4a4bb-9e7e-4af4-9d09-c8b3572b678a/automation_industrial_scene_1763708182279.png"
                                 alt="Industrial Automation"
                                 className="service-image"
+                                onError={(e) => {
+                                    e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                                }}
                             />
                             <div className="image-overlay">
                                 <FaRobot className="overlay-icon" />
@@ -83,7 +136,7 @@ const Automation = () => {
                         viewport={{ once: true }}
                         className="section-header"
                     >
-                        <h2 className="section-title text-center">Our Automation Capabilities</h2>
+                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Our Automation Capabilities</h2>
                         <p className="section-subtitle text-center">
                             Comprehensive solutions for modern industrial automation
                         </p>
@@ -99,7 +152,9 @@ const Automation = () => {
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
                                 className="feature-card"
                             >
-                                <FaCheckCircle className="feature-icon" />
+                                <div className="feature-icon-wrapper">
+                                    <FaCheckCircle className="feature-icon" />
+                                </div>
                                 <h3>{feature}</h3>
                             </motion.div>
                         ))}
@@ -107,7 +162,7 @@ const Automation = () => {
                 </div>
             </section>
 
-            {/* Technologies */}
+            {/* Technology Segmentation */}
             <section className="container section-padding">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -115,35 +170,60 @@ const Automation = () => {
                     viewport={{ once: true }}
                     className="section-header"
                 >
-                    <h2 className="section-title text-center">Technologies We Master</h2>
+                    <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Technology Segmentation</h2>
                     <p className="section-subtitle text-center">
-                        Industry-leading automation platforms
+                        Expertise across leading automation platforms
                     </p>
                 </motion.div>
 
                 <div className="technologies-grid">
-                    {technologies.map((tech, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="tech-card"
-                        >
-                            <h4>{tech.name}</h4>
-                            <div className="progress-bar">
-                                <motion.div
-                                    initial={{ width: 0 }}
-                                    whileInView={{ width: `${tech.level}%` }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 1, delay: index * 0.2 }}
-                                    className="progress-fill"
-                                />
-                            </div>
-                            <span className="progress-label">{tech.level}% Expertise</span>
-                        </motion.div>
-                    ))}
+                    {technologies.map((tech, index) => {
+                        const IconComponent = getTechnologyIcon(index);
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.08 }}
+                                className="tech-card"
+                            >
+                                <div className="tech-icon-wrapper">
+                                    <IconComponent className="feature-icon" style={{ fontSize: '2.5rem' }} />
+                                </div>
+                                <h4>{tech.name}</h4>
+
+                                {/* Progress Bar */}
+                                <div className="progress-bar">
+                                    <motion.div
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: `${tech.level}%` }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 1, delay: index * 0.2 }}
+                                        className="progress-fill"
+                                    />
+                                </div>
+                                <p className="progress-label">{tech.level}% Expertise</p>
+
+                                {/* Capabilities List */}
+                                <ul className="tech-list">
+                                    {tech.capabilities.map((capability, capIndex) => (
+                                        <motion.li
+                                            key={capIndex}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: index * 0.08 + capIndex * 0.05 }}
+                                            className="tech-list-item"
+                                        >
+                                            <span className="tech-list-bullet">●</span>
+                                            <span>{capability}</span>
+                                        </motion.li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </section>
 
@@ -158,7 +238,7 @@ const Automation = () => {
                     >
                         <h2>Ready to Automate Your Processes?</h2>
                         <p>Let's discuss how our automation solutions can transform your operations</p>
-                        <a href="/contact" className="btn btn-gradient btn-large">
+                        <a href="/contact" className="btn-large">
                             Schedule a Consultation
                         </a>
                     </motion.div>

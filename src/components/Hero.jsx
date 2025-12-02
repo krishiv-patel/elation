@@ -4,10 +4,7 @@ import { FaRocket, FaChartLine, FaCog } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
-    const [currentKeyword, setCurrentKeyword] = useState('');
     const [keywordIndex, setKeywordIndex] = useState(0);
-    const [charIndex, setCharIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
 
     const keywords = [
         'Process Excellence',
@@ -20,27 +17,12 @@ const Hero = () => {
     ];
 
     useEffect(() => {
-        const keyword = keywords[keywordIndex];
-        const typingSpeed = isDeleting ? 50 : 100;
-        const pauseEnd = 2000;
+        const timer = setInterval(() => {
+            setKeywordIndex((prevIndex) => (prevIndex + 1) % keywords.length);
+        }, 3000);
 
-        const timer = setTimeout(() => {
-            if (!isDeleting && charIndex < keyword.length) {
-                setCurrentKeyword(keyword.substring(0, charIndex + 1));
-                setCharIndex(charIndex + 1);
-            } else if (isDeleting && charIndex > 0) {
-                setCurrentKeyword(keyword.substring(0, charIndex - 1));
-                setCharIndex(charIndex - 1);
-            } else if (!isDeleting && charIndex === keyword.length) {
-                setTimeout(() => setIsDeleting(true), pauseEnd);
-            } else if (isDeleting && charIndex === 0) {
-                setIsDeleting(false);
-                setKeywordIndex((keywordIndex + 1) % keywords.length);
-            }
-        }, isDeleting ? typingSpeed : typingSpeed);
-
-        return () => clearTimeout(timer);
-    }, [charIndex, isDeleting, keywordIndex]);
+        return () => clearInterval(timer);
+    }, []);
 
     return (
         <section className="hero">
@@ -75,9 +57,8 @@ const Hero = () => {
                         className="hero-title"
                     >
                         Transforming Ideas Into<br />
-                        <span className="typewriter-wrapper">
-                            {currentKeyword}
-                            <span className="typewriter-cursor">|</span>
+                        <span key={keywordIndex} className="typewriter-wrapper popup-text">
+                            {keywords[keywordIndex]}
                         </span>
                     </motion.h1>
 
@@ -105,30 +86,7 @@ const Hero = () => {
                     </motion.div>
                 </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.4 }}
-                    className="hero-stats"
-                >
-                    <div className="stat-card">
-                        <FaRocket className="stat-icon" />
-                        <h3 className="stat-number">500+</h3>
-                        <p className="stat-label">Projects Delivered</p>
-                    </div>
 
-                    <div className="stat-card">
-                        <FaCog className="stat-icon" />
-                        <h3 className="stat-number">50+</h3>
-                        <p className="stat-label">Manufacturing Clients</p>
-                    </div>
-
-                    <div className="stat-card">
-                        <FaChartLine className="stat-icon" />
-                        <h3 className="stat-number">99%</h3>
-                        <p className="stat-label">Client Satisfaction</p>
-                    </div>
-                </motion.div>
             </div>
         </section>
     );

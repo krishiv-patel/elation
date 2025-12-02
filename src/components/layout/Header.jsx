@@ -60,11 +60,32 @@ const Header = () => {
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
         { name: 'Services', path: '/services', hasDropdown: true },
-        { name: 'Industries', path: '/industries' },
-        { name: 'Contact', path: '/contact' }
+        { name: 'Equipment Manufacturing', path: '/equipment-manufacturing' },
+        { name: 'Automation', path: '/services/automation' },
+        { name: 'Advance Technologies', path: '/advance-technologies' },
+        { name: 'Careers', path: '/careers' },
+        { name: 'Contact Us', path: '/contact' }
     ];
+
+    const menuVariants = {
+        hidden: { opacity: 0, y: -10, x: "-50%" },
+        visible: {
+            opacity: 1,
+            y: 0,
+            x: "-50%",
+            transition: {
+                duration: 0.2,
+                staggerChildren: 0.05
+            }
+        },
+        exit: { opacity: 0, y: -10, x: "-50%" }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, x: -10 },
+        visible: { opacity: 1, x: 0 }
+    };
 
     return (
         <motion.nav
@@ -98,10 +119,10 @@ const Header = () => {
                                 <AnimatePresence>
                                     {isServicesOpen && (
                                         <motion.div
-                                            initial={{ opacity: 0, y: -10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: -10 }}
-                                            transition={{ duration: 0.2 }}
+                                            variants={menuVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
                                             className="mega-menu"
                                         >
                                             <div className="mega-menu-grid">
@@ -111,13 +132,14 @@ const Header = () => {
                                                         to={service.path}
                                                         className="mega-menu-item"
                                                     >
-                                                        <div className="mega-menu-icon">
-                                                            {service.icon}
-                                                        </div>
-                                                        <div className="mega-menu-content">
-                                                            <h4>{service.name}</h4>
-                                                            <p>{service.description}</p>
-                                                        </div>
+                                                        <motion.div variants={itemVariants} style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '100%' }}>
+                                                            <div className="mega-menu-icon">
+                                                                {service.icon}
+                                                            </div>
+                                                            <div className="mega-menu-content">
+                                                                <h4>{service.name}</h4>
+                                                            </div>
+                                                        </motion.div>
                                                     </Link>
                                                 ))}
                                             </div>
@@ -127,17 +149,6 @@ const Header = () => {
                             )}
                         </li>
                     ))}
-                    <li className="search-item">
-                        <div className="search-bar">
-                            <input type="text" placeholder="Search..." />
-                            <FaSearch className="search-icon" />
-                        </div>
-                    </li>
-                    <li>
-                        <Link to="/contact" className="btn btn-gradient btn-header">
-                            Get Quote
-                        </Link>
-                    </li>
                 </ul>
 
                 <button
@@ -151,9 +162,10 @@ const Header = () => {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
                         className="mobile-menu"
                     >
                         <ul className="mobile-nav-links">
@@ -187,7 +199,7 @@ const Header = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.nav>
+        </motion.nav >
     );
 };
 

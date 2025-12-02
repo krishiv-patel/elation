@@ -1,5 +1,6 @@
-import PageHero from '../../components/shared/PageHero';
+import React from 'react';
 import { motion } from 'framer-motion';
+import PageHero from '../../components/shared/PageHero';
 import { FaBoxOpen, FaCheckCircle, FaFlask, FaCogs } from 'react-icons/fa';
 import './ServiceDetail.css';
 
@@ -23,12 +24,12 @@ const ProductDevelopment = () => {
     ];
 
     return (
-        <div className="service-detail-page">
+        <div className="service-detail-page theme-orange">
             <PageHero
                 title="Product Development"
                 subtitle="Innovation from Concept to Market"
                 description="Transforming innovative ideas into market-ready products with our comprehensive development services covering the entire product lifecycle."
-                backgroundClass="default-hero-bg"
+                backgroundClass="startups-hero-bg"
             />
 
             <section className="container section-padding">
@@ -47,7 +48,7 @@ const ProductDevelopment = () => {
                         <p className="section-description">
                             We guide you through the entire product development journey, from initial concept validation to mass production and market launch.
                         </p>
-                        <p>
+                        <p className="section-description">
                             Our multidisciplinary team combines expertise in design, engineering, prototyping, and manufacturing to deliver products that meet market needs while being manufacturable at scale.
                         </p>
                     </motion.div>
@@ -59,8 +60,18 @@ const ProductDevelopment = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="image-content"
                     >
-                        <div className="service-image-wrapper" style={{ background: 'linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%)', padding: '2rem', borderRadius: '1.5rem' }}>
-                            <FaFlask style={{ fontSize: '10rem', color: '#ff9800', margin: '0 auto', display: 'block' }} />
+                        <div className="service-image-wrapper">
+                            <img
+                                src="/src/assets/services/product-development.png"
+                                alt="Product Development"
+                                className="service-image"
+                                onError={(e) => {
+                                    e.target.src = 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                                }}
+                            />
+                            <div className="image-overlay">
+                                <FaFlask className="overlay-icon" />
+                            </div>
                         </div>
                     </motion.div>
                 </div>
@@ -74,7 +85,7 @@ const ProductDevelopment = () => {
                         viewport={{ once: true }}
                         className="section-header"
                     >
-                        <h2 className="section-title text-center">Product Development Services</h2>
+                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Product Development Services</h2>
                         <p className="section-subtitle text-center">
                             End-to-end support for your product vision
                         </p>
@@ -90,7 +101,9 @@ const ProductDevelopment = () => {
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
                                 className="feature-card"
                             >
-                                <FaCheckCircle className="feature-icon" />
+                                <div className="feature-icon-wrapper">
+                                    <FaCheckCircle className="feature-icon" />
+                                </div>
                                 <h3>{feature}</h3>
                             </motion.div>
                         ))}
@@ -105,8 +118,8 @@ const ProductDevelopment = () => {
                     viewport={{ once: true }}
                     className="section-header"
                 >
-                    <h2 className="section-title text-center">
-                        <FaBoxOpen /> Lifecycle Support
+                    <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>
+                        <FaBoxOpen className="title-icon" style={{ marginRight: '1rem' }} /> Lifecycle Support
                     </h2>
                 </motion.div>
 
@@ -128,7 +141,6 @@ const ProductDevelopment = () => {
                                     viewport={{ once: true }}
                                     transition={{ duration: 1, delay: index * 0.2 }}
                                     className="progress-fill"
-                                    style={{ background: 'linear-gradient(135deg, #ff9800 0%, #f57c00 100%)' }}
                                 />
                             </div>
                             <span className="progress-label">{item.completion}% Success Rate</span>
@@ -137,7 +149,7 @@ const ProductDevelopment = () => {
                 </div>
             </section>
 
-            <section className="cta-section" style={{ background: 'linear-gradient(135deg, #ff9800 0%, #f57c00 100%)' }}>
+            <section className="cta-section">
                 <div className="container">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -147,7 +159,7 @@ const ProductDevelopment = () => {
                     >
                         <h2>Launch Your Next Product</h2>
                         <p>Partner with us to bring your innovative product to life</p>
-                        <a href="/contact" className="btn btn-gradient btn-large">
+                        <a href="/contact" className="btn-large">
                             Start Development
                         </a>
                     </motion.div>
