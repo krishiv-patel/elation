@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaGlassMartini, FaWineGlass, FaAppleAlt, FaUtensils, FaBox, FaChalkboardTeacher } from 'react-icons/fa';
+import { FaGlassMartini, FaWineGlass, FaAppleAlt, FaUtensils, FaBox, FaWater } from 'react-icons/fa';
 import './DairyServices.css';
 
 import milkImg from '../assets/services/milk-processing-bg.png';
@@ -61,10 +61,10 @@ const DairyServices = () => {
         },
         {
             id: 6,
-            title: 'Consultancy & Training',
-            description: 'Expert guidance, technical training, and process optimization for food industries.',
-            icon: FaChalkboardTeacher,
-            route: '/services/consultancy-training',
+            title: 'Utilities',
+            description: 'Water treatment, waste water treatment, refrigeration, boiler & steam generation, and air compression systems.',
+            icon: FaWater,
+            route: '/services/utilities',
             image: milkImg,
             color: '#2dd4bf' // Teal
         }

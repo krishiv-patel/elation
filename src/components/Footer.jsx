@@ -93,7 +93,7 @@ const Footer = () => {
                         <h4>Contact</h4>
                         <p className="footer-contact-item">
                             <FaMapMarkerAlt className="footer-icon" />
-                            <span>Industrial Area, Sector 15<br />Mumbai, Maharashtra, India</span>
+                            <span>Elation Engineering Pvt Ltd<br />Block No T 106/2, Gala No 34<br />Rajgurunagar Co Op Industrial Estate<br />MIDC Bhosari, Pune 411026</span>
                         </p>
                         <p className="footer-contact-item">
                             <FaEnvelope className="footer-icon" />

@@ -6,34 +6,34 @@ import './Testimonials.css';
 const testimonials = [
     {
         id: 1,
-        name: "Sarah Johnson",
-        role: "Operations Director",
-        company: "TechFlow Manufacturing",
-        content: "Elation's automation solutions transformed our production line. Efficiency increased by 40% within the first month. Their team's expertise is unmatched.",
+        name: "Mr Ajay Jain",
+        role: "Managing Director",
+        company: "Jain Agro Food Products Private Limited, Bangalore Karnataka",
+        content: "Elation Engineering Pvt. Ltd. has demonstrated exceptional proficiency in detailed engineering as well as in overall project execution. Their technical expertise, timely delivery, and commitment to maintaining quality standards have been consistently impressive. We also appreciate their continued support and responsiveness even after the project's completion, which reflects their strong dedication to customer satisfaction.",
         rating: 5
     },
     {
         id: 2,
-        name: "Dr. Michael Chen",
-        role: "Chief Medical Officer",
-        company: "BioHealth Systems",
-        content: "The cleanroom facility design exceeded all GMP requirements. Their attention to detail and regulatory knowledge made the validation process seamless.",
+        name: "Mr Sanath Kumara Shetty",
+        role: "Founding Partner",
+        company: "Mint The Kitchen, Bangalore Karnataka",
+        content: "We are very pleased with the support provided by Elation Engineering Pvt. Ltd. They helped us standardize the processes in our bulk food processing units, which significantly increased our production efficiency. The solutions suggested by EEPL were practical, simple to implement, and remarkably cost-effective. Their guidance has truly strengthened our operations, and we highly value their expertise.",
         rating: 5
     },
     {
         id: 3,
-        name: "David Miller",
-        role: "CTO",
-        company: "InnovateX Startups",
-        content: "As a startup, we needed guidance. Elation provided not just engineering support but strategic mentorship that helped us secure our Series A funding.",
+        name: "Mr. S.M.Sawant",
+        role: "Director",
+        company: "MIPL Pune Maharashtra",
+        content: "We are extremely satisfied with the support provided by Elation Engineering Pvt. Ltd. They helped us develop innovative engineering solutions for our products, and their design capabilities truly stand out. The team understood our requirements perfectly and delivered the solutions on time. They are incredibly supportive and professional, making it very easy and comfortable for us to work with them.",
         rating: 5
     },
     {
         id: 4,
-        name: "Emily Rodriguez",
-        role: "Plant Manager",
-        company: "Global Pharma Corp",
-        content: "Their PPSO services identified bottlenecks we didn't know existed. The safety improvements alone were worth the investment.",
+        name: "Mr Anshul Jain",
+        role: "Managing Director",
+        company: "Proveg Engineering & Food Processing Pvt. Ltd Kota Rajasthan",
+        content: "We are grateful for the outstanding automation support from Elation Engineering Pvt. Ltd. Their expertise in system design and programming gives us a strong technological edge, and their 24×7 support has been invaluable for our operations.",
         rating: 5
     }
 ];

@@ -21,7 +21,7 @@ import BeverageProcessing from './pages/services/BeverageProcessing';
 import FruitVegetableProcessing from './pages/services/FruitVegetableProcessing';
 import FoodProcessing from './pages/services/FoodProcessing';
 import PackagingConveying from './pages/services/PackagingConveying';
-import ConsultancyTraining from './pages/services/ConsultancyTraining';
+import Utilities from './pages/services/Utilities';
 
 import ScrollToTop from './components/shared/ScrollToTop';
 import NotFound from './pages/NotFound';
@@ -51,7 +51,7 @@ function App() {
           <Route path="/services/fruit-vegetable-processing" element={<FruitVegetableProcessing />} />
           <Route path="/services/food-processing" element={<FoodProcessing />} />
           <Route path="/services/packaging-conveying" element={<PackagingConveying />} />
-          <Route path="/services/consultancy-training" element={<ConsultancyTraining />} />
+          <Route path="/services/utilities" element={<Utilities />} />
 
           <Route path="/industries" element={<Industries />} />
           <Route path="/contact" element={<Contact />} />

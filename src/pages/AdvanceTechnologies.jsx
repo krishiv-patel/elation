@@ -126,9 +126,12 @@ const AdvanceTechnologies = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/brain/1c937c40-bb74-4de4-a7c6-a2ab45c4d7fa/advance_tech_overview_1764509255030.png"
+                                src="/images/advance_tech_overview.png"
                                 alt="Advanced Technology Facility"
                                 className="service-image"
+                                onError={(e) => {
+                                    e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                                }}
                             />
                             <div className="image-overlay">
                                 <FaIndustry className="overlay-icon" />

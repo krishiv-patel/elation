@@ -67,7 +67,7 @@ const Contact = () => {
                             </div>
                             <div className="contact-info-content">
                                 <h4>Address</h4>
-                                <p>Industrial Area, Sector 15<br />Mumbai, Maharashtra, India</p>
+                                <p>Elation Engineering Pvt Ltd<br />Block No T 106/2 Gala No 34<br />Rajgurunagar Co Op Industrial Estate<br />MIDC Bhosari Pune 411026</p>
                             </div>
                         </div>
 
@@ -223,13 +223,14 @@ const Contact = () => {
                 >
                     <div className="map-container glass-card">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.792558693899!2d72.9968!3d19.0728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c1361c779631%3A0x67e0e5c5294e6195!2sSector%2015%2C%20Vashi%2C%20Navi%20Mumbai%2C%20Maharashtra%20400703!5e0!3m2!1sen!2sin!4v1625143200000!5m2!1sen!2sin"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.2844!2d73.8456!3d18.6305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9e5d5e5e5e5%3A0x1234567890abcdef!2sRajgurunagar%20Co%20Op%20Industrial%20Estate%2C%20MIDC%20Bhosari%2C%20Pune%2C%20Maharashtra%20411026!5e0!3m2!1sen!2sin!4v1702000000000!5m2!1sen!2sin&markers=color:red%7Clabel:E%7C18.6305,73.8456"
                             width="100%"
                             height="450"
-                            style={{ border: 0 }}
+                            style={{ border: 0, borderRadius: 'var(--radius-xl)' }}
                             allowFullScreen=""
                             loading="lazy"
-                            title="Elation Office Location"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title="Elation Engineering Pvt Ltd - MIDC Bhosari Pune"
                         ></iframe>
                     </div>
                 </motion.div>

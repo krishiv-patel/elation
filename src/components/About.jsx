@@ -17,10 +17,9 @@ const timelineData = [
 ];
 
 const teamData = [
-    { name: 'Sarah Jenkins', role: 'CEO & Founder', image: 'https://via.placeholder.com/150', bio: 'Visionary leader with 20+ years in industrial engineering.' },
-    { name: 'David Chen', role: 'Chief Technology Officer', image: 'https://via.placeholder.com/150', bio: 'Expert in automation systems and AI integration.' },
-    { name: 'Emily Rodriguez', role: 'Head of Design', image: 'https://via.placeholder.com/150', bio: 'Award-winning industrial designer passionate about user-centric products.' },
-    { name: 'Michael Chang', role: 'Director of Operations', image: 'https://via.placeholder.com/150', bio: 'Ensuring seamless project delivery and operational excellence.' }
+    { name: 'Mr Vivek Jagtap', role: 'Founder', image: 'https://via.placeholder.com/150', bio: 'M. Tech IIT Kharagpur. Visionary leader driving innovation in food processing engineering.' },
+    { name: 'Mr Jagdish Bainagari', role: 'Automation System Expert', image: 'https://via.placeholder.com/150', bio: 'Specialist in automation systems, PLC programming, and industrial control solutions.' },
+    { name: 'Mr Pandarinath Pandit', role: 'Engineering Design Expert', image: 'https://via.placeholder.com/150', bio: 'Expert in engineering design with extensive experience in process equipment and plant layout.' }
 ];
 
 const valuesData = [
