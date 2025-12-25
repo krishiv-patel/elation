@@ -96,10 +96,10 @@ const Header = () => {
         >
             <div className="container header-container">
                 <Link to="/" className="header-logo">
-                    <img src="/logo.png" alt="Elation" />
-                    <div className="logo-text-container" style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.1' }}>
-                        <span className="logo-text" style={{ fontSize: '1.1rem' }}>Elation Engineering</span>
-                        <span className="logo-text" style={{ fontSize: '0.9rem' }}>Private Limited</span>
+                    <img src="/logo.png" alt="Elation Engineering Private Limited Logo" />
+                    <div className="logo-text-container" style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2' }}>
+                        <span className="logo-text" style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Elation Engineering</span>
+                        <span className="logo-text" style={{ fontSize: '1rem', fontWeight: '500' }}>Private Limited</span>
                     </div>
                 </Link>
 
