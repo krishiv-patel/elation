@@ -103,7 +103,7 @@ const EquipmentManufacturing = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/images/equipment_manufacturing_hero.png"
+                                src="/images/equipment_manufacturing_branded.png"
                                 alt="Equipment Manufacturing Facility"
                                 className="service-image"
                                 onError={(e) => {

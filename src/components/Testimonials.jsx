@@ -35,6 +35,22 @@ const testimonials = [
         company: "Proveg Engineering & Food Processing Pvt. Ltd Kota Rajasthan",
         content: "We are grateful for the outstanding automation support from Elation Engineering Pvt. Ltd. Their expertise in system design and programming gives us a strong technological edge, and their 24×7 support has been invaluable for our operations.",
         rating: 5
+    },
+    {
+        id: 5,
+        name: "Mr Raj Mehta",
+        role: "Owner",
+        company: "Little Italy Express Foods Pvt. Ltd Pune Maharashtra",
+        content: "Elation Engineering Pvt. Ltd. has done excellent work in developing multiple SKUs for our chain of restaurants. Their detailed SOPs played a crucial role in our standardization process. The team's innovative approach and in-depth technical knowledge helped us complete projects within the planned timelines. The products developed were well appreciated by consumers, which truly reflects the quality of their work. Their ability to provide one-stop solutions for all food engineering and technological needs is a major advantage. We wish them continued success in all their future endeavours.",
+        rating: 5
+    },
+    {
+        id: 6,
+        name: "Mrs Malini Joshi",
+        role: "Owner",
+        company: "Brand MUG - Malini Gruh Udyog, Pune Maharashtra",
+        content: "Elation Engineering Pvt. Ltd. stands out for its strong market awareness, deep understanding of customer requirements, and prompt, solution-oriented approach. Their quick issue resolution and proactive support made the entire journey—from concept development to commercial production—seamless and efficient. We truly appreciate their role in developing our complete product range and would highly recommend EEPL as a trusted partner for upcoming food processing units.",
+        rating: 5
     }
 ];
 
