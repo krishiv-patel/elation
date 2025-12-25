@@ -1,28 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
-import { FaBoxOpen, FaCheckCircle, FaFlask, FaCogs } from 'react-icons/fa';
+import { FaTasks, FaUserTie, FaProjectDiagram, FaClock } from 'react-icons/fa';
 import './ServiceDetail.css';
 
-const ProductDevelopment = () => {
-    const services = [
-        'New Product Development',
-        'Value Addition to Existing Product',
-        'Modernization of Indigenous Product',
-        'Localization of Exotic Product',
-        'Product Standardization',
-        'Product Testing',
-        'Patent Processing',
-        'Streamlining of Compliances'
+const ProjectManagement = () => {
+    const areas = [
+        'Scope Management',
+        'Schedule Management',
+        'Cost Management',
+        'Quality Management',
+        'Resource Management',
+        'Communication Management',
+        'Risk Management',
+        'Procurement Management',
+        'Stakeholder Management',
+        'Project Integration Management',
+        'Project Document'
     ];
 
     return (
-        <div className="service-detail-page theme-orange">
+        <div className="service-detail-page theme-purple">
             <PageHero
-                title="Product Design & Development"
-                subtitle="Innovation from Concept to Market"
-                description="Comprehensive support to design and develop the most innovative and effective food products that meet market demands."
-                backgroundClass="startups-hero-bg"
+                title="Project Management"
+                subtitle="Delivering Excellence on Time"
+                description="Systematic approach to planning, organizing, and controlling resources to ensure timely achievement of defined goals."
+                backgroundClass="service-hero-bg"
             />
 
             <section className="container section-padding">
@@ -35,11 +38,14 @@ const ProductDevelopment = () => {
                         className="text-content"
                     >
                         <h2 className="section-title">
-                            <FaCogs className="title-icon" />
-                            Bringing Products to Market
+                            <FaTasks className="title-icon" />
+                            PMI Aligned Management
                         </h2>
                         <p className="section-description">
-                            The process of food product design and development involves several key stages, each essential for successfully bringing a product to market. Our expert team and state-of-the-art facilities provide comprehensive support to design and develop the most innovative and effective food products that meet market demands and consumer expectations.
+                            Project management ensures proper planning of tasks and the timely achievement of defined goals. It serves as a systematic approach to planning, organizing, and controlling resources, fostering effective collaboration between team members and stakeholders.
+                        </p>
+                        <p className="section-description">
+                            The importance of project management extends across various sectors, facilitating efficient delivery while minimizing risks. We provide comprehensive project management services in alignment with PMI standards.
                         </p>
                     </motion.div>
 
@@ -52,15 +58,15 @@ const ProductDevelopment = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/src/assets/services/product-development.png"
-                                alt="Product Development"
+                                src="/src/assets/services/project-management.png"
+                                alt="Project Management"
                                 className="service-image"
                                 onError={(e) => {
-                                    e.target.src = 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                                    e.target.src = 'https://images.unsplash.com/photo-1542626991-cbc4e32524cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
                                 }}
                             />
                             <div className="image-overlay">
-                                <FaFlask className="overlay-icon" />
+                                <FaProjectDiagram className="overlay-icon" />
                             </div>
                         </div>
                     </motion.div>
@@ -75,14 +81,14 @@ const ProductDevelopment = () => {
                         viewport={{ once: true }}
                         className="section-header"
                     >
-                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Our Development Services</h2>
+                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Management Areas</h2>
                         <p className="section-subtitle text-center">
-                            End-to-end support for your product vision
+                            Comprehensive coverage of all project aspects
                         </p>
                     </motion.div>
 
                     <div className="features-grid">
-                        {services.map((feature, index) => (
+                        {areas.map((area, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
@@ -92,9 +98,9 @@ const ProductDevelopment = () => {
                                 className="feature-card"
                             >
                                 <div className="feature-icon-wrapper">
-                                    <FaCheckCircle className="feature-icon" />
+                                    <FaUserTie className="feature-icon" />
                                 </div>
-                                <h3>{feature}</h3>
+                                <h3>{area}</h3>
                             </motion.div>
                         ))}
                     </div>
@@ -104,4 +110,4 @@ const ProductDevelopment = () => {
     );
 };
 
-export default ProductDevelopment;
+export default ProjectManagement;

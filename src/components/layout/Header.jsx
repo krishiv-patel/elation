@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaChevronDown, FaCog, FaHeartbeat, FaPencilRuler, FaRocket, FaChartLine, FaBoxOpen, FaSearch } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChevronDown, FaLightbulb, FaDraftingCompass, FaCogs, FaProjectDiagram, FaHardHat, FaWrench } from 'react-icons/fa';
 import './Header.css';
 
 const Header = () => {
@@ -21,48 +21,49 @@ const Header = () => {
 
     const serviceLinks = [
         {
-            name: 'Automation Systems',
-            path: '/services/automation',
-            icon: <FaCog />,
-            description: 'Industrial automation & control systems'
+            name: 'Pre-Project Activities',
+            path: '/services/pre-project-activities',
+            icon: <FaLightbulb />,
+            description: 'Concept development, market survey & business forecasting'
         },
         {
-            name: 'Healthcare Solutions',
-            path: '/services/healthcare',
-            icon: <FaHeartbeat />,
-            description: 'Pharmaceutical & medical device engineering'
-        },
-        {
-            name: 'Engineering Design',
-            path: '/services/design',
-            icon: <FaPencilRuler />,
-            description: '3D modeling, CAD & technical documentation'
-        },
-        {
-            name: 'Product Development',
+            name: 'Product Design & Development',
             path: '/services/product-development',
-            icon: <FaBoxOpen />,
-            description: 'End-to-end product lifecycle management'
+            icon: <FaDraftingCompass />,
+            description: 'New product development & value addition'
         },
         {
-            name: 'Process Excellence',
-            path: '/services/ppso',
-            icon: <FaChartLine />,
-            description: 'PPSO, lean manufacturing & optimization'
+            name: 'Engineering Services',
+            path: '/services/engineering-services-detail',
+            icon: <FaCogs />,
+            description: 'Process design, plant design & equipment selection'
         },
         {
-            name: 'Startup Handholding',
-            path: '/services/startups',
-            icon: <FaRocket />,
-            description: 'Technical support for emerging companies'
+            name: 'Project Management',
+            path: '/services/project-management',
+            icon: <FaProjectDiagram />,
+            description: 'Scope, schedule, cost & quality management'
+        },
+        {
+            name: 'Site Activities',
+            path: '/services/site-activities',
+            icon: <FaHardHat />,
+            description: 'Installation, piping & commissioning'
+        },
+        {
+            name: 'Equipment Maintenance & Retrofits',
+            path: '/services/maintenance-retrofits',
+            icon: <FaWrench />,
+            description: 'Annual maintenance & process improvements'
         }
     ];
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'Services', path: '/services', hasDropdown: true },
+        { name: 'About Us', path: '/about' },
+        { name: 'Engineering Services', path: '/services', hasDropdown: true },
         { name: 'Equipment Manufacturing', path: '/equipment-manufacturing' },
-        { name: 'Automation', path: '/services/automation' },
+        { name: 'Automation', path: '/automation' },
         { name: 'Advance Technologies', path: '/advance-technologies' },
         { name: 'Careers', path: '/careers' },
         { name: 'Contact Us', path: '/contact' }
@@ -96,7 +97,10 @@ const Header = () => {
             <div className="container header-container">
                 <Link to="/" className="header-logo">
                     <img src="/logo.png" alt="Elation" />
-                    <span className="logo-text">Elation</span>
+                    <div className="logo-text-container" style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.1' }}>
+                        <span className="logo-text" style={{ fontSize: '1.1rem' }}>Elation Engineering</span>
+                        <span className="logo-text" style={{ fontSize: '0.9rem' }}>Private Limited</span>
+                    </div>
                 </Link>
 
                 <ul className="header-links desktop-only">

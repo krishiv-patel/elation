@@ -1,28 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
-import { FaBoxOpen, FaCheckCircle, FaFlask, FaCogs } from 'react-icons/fa';
+import { FaHardHat, FaTools, FaCheckDouble, FaFileContract } from 'react-icons/fa';
 import './ServiceDetail.css';
 
-const ProductDevelopment = () => {
-    const services = [
-        'New Product Development',
-        'Value Addition to Existing Product',
-        'Modernization of Indigenous Product',
-        'Localization of Exotic Product',
-        'Product Standardization',
-        'Product Testing',
-        'Patent Processing',
-        'Streamlining of Compliances'
+const SiteActivities = () => {
+    const activities = [
+        'Installation of process and utility equipment',
+        'Interconnecting piping',
+        'Site work quality control',
+        'Site safety system',
+        'Statutory requirements and certifications',
+        'Process and utility testing',
+        'Commissioning of process plant',
+        'Site resource management',
+        'Site work documentation'
     ];
 
     return (
         <div className="service-detail-page theme-orange">
             <PageHero
-                title="Product Design & Development"
-                subtitle="Innovation from Concept to Market"
-                description="Comprehensive support to design and develop the most innovative and effective food products that meet market demands."
-                backgroundClass="startups-hero-bg"
+                title="Site Activities"
+                subtitle="Excellence in Execution"
+                description="Complete package of site activities including installation, piping, and commissioning with a focus on safety and quality."
+                backgroundClass="service-hero-bg"
             />
 
             <section className="container section-padding">
@@ -35,11 +36,14 @@ const ProductDevelopment = () => {
                         className="text-content"
                     >
                         <h2 className="section-title">
-                            <FaCogs className="title-icon" />
-                            Bringing Products to Market
+                            <FaHardHat className="title-icon" />
+                            On-Site Execution & Safety
                         </h2>
                         <p className="section-description">
-                            The process of food product design and development involves several key stages, each essential for successfully bringing a product to market. Our expert team and state-of-the-art facilities provide comprehensive support to design and develop the most innovative and effective food products that meet market demands and consumer expectations.
+                            We provide a complete package of site activities, including unloading, unpacking, shifting, installation, piping, and commissioning of equipment. On-site activities are critical for enforcing safety protocols and preventing accidents, ensuring the wellbeing of workers and compliance with regulatory standards.
+                        </p>
+                        <p className="section-description">
+                            Our trained site engineers closely monitor workmanship, materials, and methods to ensure that all site activities meet design specifications and quality requirements.
                         </p>
                     </motion.div>
 
@@ -52,15 +56,15 @@ const ProductDevelopment = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/src/assets/services/product-development.png"
-                                alt="Product Development"
+                                src="/src/assets/services/site-activities.png"
+                                alt="Site Activities"
                                 className="service-image"
                                 onError={(e) => {
-                                    e.target.src = 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                                    e.target.src = 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
                                 }}
                             />
                             <div className="image-overlay">
-                                <FaFlask className="overlay-icon" />
+                                <FaTools className="overlay-icon" />
                             </div>
                         </div>
                     </motion.div>
@@ -75,14 +79,14 @@ const ProductDevelopment = () => {
                         viewport={{ once: true }}
                         className="section-header"
                     >
-                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Our Development Services</h2>
+                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Site Services</h2>
                         <p className="section-subtitle text-center">
-                            End-to-end support for your product vision
+                            Comprehensive site management from start to finish
                         </p>
                     </motion.div>
 
                     <div className="features-grid">
-                        {services.map((feature, index) => (
+                        {activities.map((activity, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
@@ -92,9 +96,9 @@ const ProductDevelopment = () => {
                                 className="feature-card"
                             >
                                 <div className="feature-icon-wrapper">
-                                    <FaCheckCircle className="feature-icon" />
+                                    <FaCheckDouble className="feature-icon" />
                                 </div>
-                                <h3>{feature}</h3>
+                                <h3>{activity}</h3>
                             </motion.div>
                         ))}
                     </div>
@@ -104,4 +108,4 @@ const ProductDevelopment = () => {
     );
 };
 
-export default ProductDevelopment;
+export default SiteActivities;

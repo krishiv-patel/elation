@@ -55,15 +55,7 @@ const BeverageProcessing = () => {
         { title: 'Blending & Mixing', description: 'Precise formulation of ingredients.' },
         { title: 'Thermal Processing', description: 'Pasteurization or UHT treatment.' },
         { title: 'Carbonation', description: 'CO2 injection for sparkling drinks.' },
-        { title: 'Filling & Capping', description: 'Hygienic bottling and sealing.' },
-        { title: 'Packaging', description: 'Labeling, packing, and palletizing.' }
-    ];
-
-    const technologies = [
-        { name: 'Hot Fill Technology', level: 95 },
-        { name: 'Aseptic Filling', level: 98 },
-        { name: 'Tunnel Pasteurization', level: 90 },
-        { name: 'CIP/SIP Systems', level: 95 }
+        { title: 'Filling & Capping', description: 'Hygienic bottling and sealing.' }
     ];
 
     return (
@@ -188,48 +180,6 @@ const BeverageProcessing = () => {
                             <p>{step.description}</p>
                         </motion.div>
                     ))}
-                </div>
-            </section>
-
-            {/* Technologies */}
-            <section className="bg-secondary section-padding">
-                <div className="container">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="section-header"
-                    >
-                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Key Technologies</h2>
-                        <p className="section-subtitle text-center">
-                            Advanced systems for superior quality
-                        </p>
-                    </motion.div>
-
-                    <div className="technologies-grid">
-                        {technologies.map((tech, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="tech-card"
-                            >
-                                <h4>{tech.name}</h4>
-                                <div className="progress-bar">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: `${tech.level}%` }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 1, delay: index * 0.2 }}
-                                        className="progress-fill"
-                                    />
-                                </div>
-                                <span className="progress-label">{tech.level}% Efficiency</span>
-                            </motion.div>
-                        ))}
-                    </div>
                 </div>
             </section>
 

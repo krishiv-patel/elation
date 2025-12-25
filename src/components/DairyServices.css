@@ -37,6 +37,15 @@
     line-height: 1.6;
 }
 
+.dairy-services .section-subtitle-large {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

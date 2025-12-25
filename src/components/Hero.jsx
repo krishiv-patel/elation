@@ -47,7 +47,7 @@ const Hero = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="hero-subtitle"
                     >
-                        Engineering Excellence Since 2015
+                        Engineering Excellence Since 2021
                     </motion.p>
 
                     <motion.h1

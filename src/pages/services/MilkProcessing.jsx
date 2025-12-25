@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
-import { FaCheckCircle, FaIndustry, FaFlask, FaSnowflake, FaTint, FaCogs } from 'react-icons/fa';
+import { FaCheckCircle, FaIndustry, FaFlask, FaSnowflake, FaTint, FaCogs, FaCookie } from 'react-icons/fa';
 import './ServiceDetail.css';
 
 const MilkProcessing = () => {
@@ -25,6 +25,11 @@ const MilkProcessing = () => {
             title: 'Ice Cream & Frozen',
             description: 'Mix preparation, freezing, and hardening systems for frozen desserts.',
             icon: FaSnowflake
+        },
+        {
+            title: 'Indigenous Sweets Processing',
+            description: 'Traditional Indian sweets processing with modern automation and quality control.',
+            icon: FaCookie
         }
     ];
 

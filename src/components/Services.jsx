@@ -1,64 +1,50 @@
 import { motion } from 'framer-motion';
 import {
     FaCogs,
-    FaHeart,
+    FaLightbulb,
     FaDraftingCompass,
-    FaRocket,
-    FaChartLine,
-    FaBuilding,
-    FaIndustry,
-    FaMicrochip
+    FaProjectDiagram,
+    FaHardHat,
+    FaWrench
 } from 'react-icons/fa';
 import './Services.css';
 
 const services = [
     {
-        icon: <FaMicrochip />,
-        title: 'Automation Systems',
-        description: 'Advanced industrial automation solutions including SCADA, PLC programming, and control systems integration.',
+        icon: <FaLightbulb />,
+        title: 'Pre-Project Activities',
+        description: 'Concept development, market survey, business forecasting, stakeholder analysis, and comprehensive project reports.',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     },
     {
-        icon: <FaHeart />,
-        title: 'Healthcare Solutions',
-        description: 'Specialized engineering solutions for healthcare facilities, medical equipment, and pharmaceutical processes.',
+        icon: <FaDraftingCompass />,
+        title: 'Product Design & Development',
+        description: 'New product development, value addition, modernization of indigenous products, and product standardization.',
         gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
     },
     {
-        icon: <FaDraftingCompass />,
-        title: 'Engineering Design',
-        description: 'Comprehensive design services from concept to detailed engineering, including 3D modeling and technical documentation.',
+        icon: <FaCogs />,
+        title: 'Engineering Services',
+        description: 'Process design, plant design, equipment design & selection, vendor development, and engineering documentation.',
         gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
     },
     {
-        icon: <FaRocket />,
-        title: 'Startup Handholding',
-        description: 'End-to-end support for startups from ideation to market launch, including technical consulting and mentorship.',
+        icon: <FaProjectDiagram />,
+        title: 'Project Management',
+        description: 'Scope, schedule, cost, quality, resource, risk, and stakeholder management aligned with PMI standards.',
         gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
     },
     {
-        icon: <FaChartLine />,
-        title: 'Process Excellence',
-        description: 'Process optimization, performance enhancement, and efficiency improvement strategies for industrial operations.',
+        icon: <FaHardHat />,
+        title: 'Site Activities',
+        description: 'Installation, piping, commissioning, site safety, statutory requirements, and site work quality control.',
         gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
     },
     {
-        icon: <FaBuilding />,
-        title: 'Corporate Solutions',
-        description: 'Tailored engineering and consulting services for corporate clients across various industries.',
-        gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
-    },
-    {
-        icon: <FaIndustry />,
-        title: 'Equipment Fabrication',
-        description: 'Custom equipment design and fabrication services for specialized industrial applications.',
+        icon: <FaWrench />,
+        title: 'Equipment Maintenance & Retrofits',
+        description: 'Annual maintenance for homogenisers, sterilisers, pasteurisers, filling machines, and process improvement solutions.',
         gradient: 'linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%)'
-    },
-    {
-        icon: <FaCogs />,
-        title: 'Project Management',
-        description: 'Comprehensive project management services ensuring timely delivery and optimal resource utilization.',
-        gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
     }
 ];
 
@@ -95,7 +81,7 @@ const Services = () => {
                     transition={{ duration: 0.6 }}
                     className="services-header"
                 >
-                    <h2>Our Services</h2>
+                    <h2>Engineering Services</h2>
                     <p className="services-subtitle">
                         Comprehensive engineering solutions tailored to your industry's unique challenges
                     </p>

@@ -57,11 +57,11 @@ const Footer = () => {
                     <div className="footer-links footer-links-services">
                         <h4>Services</h4>
                         <ul>
-                            <li><a href="/services/automation">Automation</a></li>
-                            <li><a href="/services/healthcare">Healthcare</a></li>
-                            <li><a href="/services/design">Design</a></li>
-                            <li><a href="/services/startups">Startups</a></li>
-                            <li><a href="/services/ppso">PPSO</a></li>
+                            <li><a href="/services/pre-project-activities">Pre-Project Activities</a></li>
+                            <li><a href="/services/engineering-services-detail">Engineering Services</a></li>
+                            <li><a href="/services/project-management">Project Management</a></li>
+                            <li><a href="/services/site-activities">Site Activities</a></li>
+                            <li><a href="/services/maintenance-retrofits">Maintenance & Retrofits</a></li>
                         </ul>
                     </div>
 
@@ -97,11 +97,11 @@ const Footer = () => {
                         </p>
                         <p className="footer-contact-item">
                             <FaEnvelope className="footer-icon" />
-                            <span>info@elation.com</span>
+                            <span>contactus.elation@gmail.com</span>
                         </p>
                         <p className="footer-contact-item">
                             <FaPhone className="footer-icon" />
-                            <span>+91 (123) 456-7890</span>
+                            <span>+91 76765 28321<br />+91 94044 96216</span>
                         </p>
                     </div>
                 </div>
@@ -112,11 +112,11 @@ const Footer = () => {
                         © {currentYear} Elation. All rights reserved.
                     </p>
                     <div className="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
+                        <Link to="/privacy-policy">Privacy Policy</Link>
                         <span>•</span>
-                        <a href="#">Terms of Service</a>
+                        <Link to="/terms-of-service">Terms of Service</Link>
                         <span>•</span>
-                        <a href="#">Cookie Policy</a>
+                        <Link to="/cookie-policy">Cookie Policy</Link>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,6 @@ const Automation = () => {
     const technologies = [
         {
             name: 'Siemens',
-            level: 95,
             capabilities: [
                 'SIMATIC S7-1200/1500 PLC Programming',
                 'TIA Portal Software Development',
@@ -31,7 +30,6 @@ const Automation = () => {
         },
         {
             name: 'Allen-Bradley',
-            level: 90,
             capabilities: [
                 'ControlLogix & CompactLogix PLCs',
                 'Studio 5000 Programming',
@@ -43,7 +41,6 @@ const Automation = () => {
         },
         {
             name: 'Schneider Electric',
-            level: 85,
             capabilities: [
                 'Modicon M340/M580 Programming',
                 'Unity Pro & EcoStruxure Software',
@@ -55,7 +52,6 @@ const Automation = () => {
         },
         {
             name: 'ABB',
-            level: 88,
             capabilities: [
                 'AC500 PLC Programming',
                 'Control Builder Software',
@@ -192,18 +188,6 @@ const Automation = () => {
                                     <IconComponent className="feature-icon" style={{ fontSize: '2.5rem' }} />
                                 </div>
                                 <h4>{tech.name}</h4>
-
-                                {/* Progress Bar */}
-                                <div className="progress-bar">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: `${tech.level}%` }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 1, delay: index * 0.2 }}
-                                        className="progress-fill"
-                                    />
-                                </div>
-                                <p className="progress-label">{tech.level}% Expertise</p>
 
                                 {/* Capabilities List */}
                                 <ul className="tech-list">

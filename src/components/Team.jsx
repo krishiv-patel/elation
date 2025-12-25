@@ -7,9 +7,9 @@ const Team = () => {
     const teamMembers = [
         {
             name: 'Mr. Vivek Jagtap',
-            role: 'Founder',
-            credentials: 'M. Tech IIT Kharagpur',
-            description: 'Visionary leader with extensive experience in industrial engineering and process automation.',
+            role: 'Food Engineering Expert',
+            credentials: 'Alumni IIT Kharagpur',
+            description: 'Visionary leader with extensive experience in Dairy and Food Engineering.',
             image: '/images/team/Mr Vivek Jagtap.png'
         },
         {

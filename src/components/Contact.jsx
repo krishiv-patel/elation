@@ -77,7 +77,7 @@ const Contact = () => {
                             </div>
                             <div className="contact-info-content">
                                 <h4>Phone</h4>
-                                <p>+91 (123) 456-7890<br />+91 (098) 765-4321</p>
+                                <p>+91 76765 28321<br />+91 94044 96216</p>
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@ const Contact = () => {
                             </div>
                             <div className="contact-info-content">
                                 <h4>Email</h4>
-                                <p>info@elation.com<br />support@elation.com</p>
+                                <p>contactus.elation@gmail.com</p>
                             </div>
                         </div>
                     </motion.div>

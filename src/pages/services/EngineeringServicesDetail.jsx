@@ -1,28 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
-import { FaBoxOpen, FaCheckCircle, FaFlask, FaCogs } from 'react-icons/fa';
+import { FaCogs, FaDraftingCompass, FaIndustry, FaTools } from 'react-icons/fa';
 import './ServiceDetail.css';
 
-const ProductDevelopment = () => {
+const EngineeringServicesDetail = () => {
     const services = [
-        'New Product Development',
-        'Value Addition to Existing Product',
-        'Modernization of Indigenous Product',
-        'Localization of Exotic Product',
-        'Product Standardization',
-        'Product Testing',
-        'Patent Processing',
-        'Streamlining of Compliances'
+        'Process Design',
+        'Plant Design',
+        'Process and Utility Equipment Design',
+        'Equipment Selection',
+        'Vendor Selection and Development',
+        'Estimation of Bill of Material',
+        'Installation Activities',
+        'Product Trials',
+        'Maintenance System',
+        'Engineering Documentation'
     ];
 
     return (
-        <div className="service-detail-page theme-orange">
+        <div className="service-detail-page theme-teal">
             <PageHero
-                title="Product Design & Development"
-                subtitle="Innovation from Concept to Market"
-                description="Comprehensive support to design and develop the most innovative and effective food products that meet market demands."
-                backgroundClass="startups-hero-bg"
+                title="Engineering Services"
+                subtitle="Optimizing Efficiency & Innovation"
+                description="Specialized expertise in engineering solutions to drive efficiency, safety, and innovation across diverse industries."
+                backgroundClass="service-hero-bg"
             />
 
             <section className="container section-padding">
@@ -36,10 +38,13 @@ const ProductDevelopment = () => {
                     >
                         <h2 className="section-title">
                             <FaCogs className="title-icon" />
-                            Bringing Products to Market
+                            Comprehensive Engineering Solutions
                         </h2>
                         <p className="section-description">
-                            The process of food product design and development involves several key stages, each essential for successfully bringing a product to market. Our expert team and state-of-the-art facilities provide comprehensive support to design and develop the most innovative and effective food products that meet market demands and consumer expectations.
+                            We provide specialized expertise in engineering solutions to drive efficiency, safety, and innovation. Our engineering services are essential for optimizing processes, enhancing product quality, and reducing costs across diverse industries.
+                        </p>
+                        <p className="section-description">
+                            They also play a critical role in promoting sustainability, ensuring safety, and maintaining regulatory compliance. By leveraging advanced technologies, we further amplify efficiency, innovation, and long-term operational excellence.
                         </p>
                     </motion.div>
 
@@ -52,15 +57,15 @@ const ProductDevelopment = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/src/assets/services/product-development.png"
-                                alt="Product Development"
+                                src="/src/assets/services/engineering-services.png"
+                                alt="Engineering Services"
                                 className="service-image"
                                 onError={(e) => {
-                                    e.target.src = 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+                                    e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
                                 }}
                             />
                             <div className="image-overlay">
-                                <FaFlask className="overlay-icon" />
+                                <FaDraftingCompass className="overlay-icon" />
                             </div>
                         </div>
                     </motion.div>
@@ -75,14 +80,14 @@ const ProductDevelopment = () => {
                         viewport={{ once: true }}
                         className="section-header"
                     >
-                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Our Development Services</h2>
+                        <h2 className="section-title text-center" style={{ justifyContent: 'center' }}>Engineering Capabilities</h2>
                         <p className="section-subtitle text-center">
-                            End-to-end support for your product vision
+                            End-to-end engineering support for your facility
                         </p>
                     </motion.div>
 
                     <div className="features-grid">
-                        {services.map((feature, index) => (
+                        {services.map((service, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
@@ -92,9 +97,9 @@ const ProductDevelopment = () => {
                                 className="feature-card"
                             >
                                 <div className="feature-icon-wrapper">
-                                    <FaCheckCircle className="feature-icon" />
+                                    <FaIndustry className="feature-icon" />
                                 </div>
-                                <h3>{feature}</h3>
+                                <h3>{service}</h3>
                             </motion.div>
                         ))}
                     </div>
@@ -104,4 +109,4 @@ const ProductDevelopment = () => {
     );
 };
 
-export default ProductDevelopment;
+export default EngineeringServicesDetail;

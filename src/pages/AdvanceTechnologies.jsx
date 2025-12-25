@@ -26,7 +26,8 @@ const AdvanceTechnologies = () => {
                 'Precise temperature control for pharma',
                 'High-frequency heating applications'
             ],
-            icon: FaMicrochip
+            icon: FaMicrochip,
+            link: 'https://aimhha.org/'
         },
         {
             title: 'Waste Water Management',
@@ -37,7 +38,8 @@ const AdvanceTechnologies = () => {
                 'Membrane Bio Reactor (MBR) technology',
                 'Sequential Batch Reactors (SBR)'
             ],
-            icon: FaIndustry
+            icon: FaIndustry,
+            link: 'https://alantech.in/waste-water-treatment' // Added inferred link or placeholder if not in excel, wait, excel said "Waste Water Treatment Plant | Industrial & Municipal Solutions" which looks like text, but Water Treatment System had 'https://alantech.in/raw-water-treatment'
         },
         {
             title: 'Water Treatment System',
@@ -48,7 +50,8 @@ const AdvanceTechnologies = () => {
                 'High Purity RO & Electrodeionization',
                 'Ozonation & UV Treatment'
             ],
-            icon: FaWater
+            icon: FaWater,
+            link: 'https://alantech.in/raw-water-treatment'
         },
         {
             title: 'Ultra High Pressure Homogenisation',

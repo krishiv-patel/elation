@@ -14,6 +14,11 @@ import Design from './pages/services/Design';
 import Startups from './pages/services/Startups';
 import PPSO from './pages/services/PPSO';
 import ProductDevelopment from './pages/services/ProductDevelopment';
+import PreProjectActivities from './pages/services/PreProjectActivities';
+import EngineeringServicesDetail from './pages/services/EngineeringServicesDetail';
+import ProjectManagement from './pages/services/ProjectManagement';
+import SiteActivities from './pages/services/SiteActivities';
+import MaintenanceRetrofits from './pages/services/MaintenanceRetrofits';
 
 // Dairy-focused services
 import MilkProcessing from './pages/services/MilkProcessing';
@@ -22,6 +27,10 @@ import FruitVegetableProcessing from './pages/services/FruitVegetableProcessing'
 import FoodProcessing from './pages/services/FoodProcessing';
 import PackagingConveying from './pages/services/PackagingConveying';
 import Utilities from './pages/services/Utilities';
+
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
 
 import ScrollToTop from './components/shared/ScrollToTop';
 import NotFound from './pages/NotFound';
@@ -38,12 +47,20 @@ function App() {
           <Route path="/equipment-manufacturing" element={<EquipmentManufacturing />} />
           <Route path="/advance-technologies" element={<AdvanceTechnologies />} />
           <Route path="/careers" element={<Careers />} />
-          <Route path="/services/automation" element={<Automation />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/automation" element={<Automation />} />
           <Route path="/services/healthcare" element={<Healthcare />} />
           <Route path="/services/design" element={<Design />} />
           <Route path="/services/startups" element={<Startups />} />
           <Route path="/services/ppso" element={<PPSO />} />
           <Route path="/services/product-development" element={<ProductDevelopment />} />
+
+          {/* Engineering Services Routes */}
+          <Route path="/services/pre-project-activities" element={<PreProjectActivities />} />
+          <Route path="/services/engineering-services-detail" element={<EngineeringServicesDetail />} />
+          <Route path="/services/project-management" element={<ProjectManagement />} />
+          <Route path="/services/site-activities" element={<SiteActivities />} />
+          <Route path="/services/maintenance-retrofits" element={<MaintenanceRetrofits />} />
 
           {/* Dairy-focused service routes */}
           <Route path="/services/milk-processing" element={<MilkProcessing />} />
@@ -55,6 +72,12 @@ function App() {
 
           <Route path="/industries" element={<Industries />} />
           <Route path="/contact" element={<Contact />} />
+
+          {/* Legal Pages */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </PageLayout>

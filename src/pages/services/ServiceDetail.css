@@ -112,29 +112,52 @@
 
 /* Features Grid */
 .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--spacing-xl);
     margin-top: var(--spacing-2xl);
 }
 
 .feature-card {
     background: white;
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-xl);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--gray-200);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: var(--spacing-2xl);
+    /* Increased padding */
+    border-radius: var(--radius-2xl);
+    /* More rounded */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Softer, deeper shadow */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Subtle border */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy transition */
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
     height: 100%;
+    flex: 1 1 300px;
+    /* Flex sizing */
+    max-width: 380px;
+    /* Prevent over-stretching */
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    transition: background 0.3s ease;
 }
 
 .feature-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-    border-color: var(--primary-400);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: transparent;
 }
 
 .feature-icon-wrapper {
@@ -188,10 +211,12 @@
 
 .process-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-2xl);
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-xl);
     position: relative;
     z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .process-card {
@@ -238,8 +263,9 @@
 
 /* Technologies Grid */
 .technologies-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--spacing-xl);
     margin-top: var(--spacing-2xl);
 }
@@ -248,16 +274,18 @@
     background: white;
     padding: var(--spacing-2xl);
     border-radius: var(--radius-2xl);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--gray-200);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-align: center;
+    flex: 1 1 300px;
+    max-width: 380px;
 }
 
 .tech-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-    border-color: var(--primary-400);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: transparent;
 }
 
 .tech-icon-wrapper {
@@ -396,6 +424,17 @@
     .image-content {
         order: -1;
         /* Image on top for mobile */
+    }
+
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 640px) {
+    .process-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -704,4 +743,39 @@
 
 .theme-tech .tech-list-bullet {
     color: #2962ff;
+}
+
+/* Maintenance Page Styles */
+.features-list-center {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+    margin-top: var(--spacing-xl);
+}
+
+.feature-item-simple {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: white;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.feature-item-simple:hover {
+    transform: translateX(10px);
+    box-shadow: var(--shadow-md);
+    color: var(--primary-700);
+}
+
+.feature-icon-simple {
+    color: var(--primary-500);
+    font-size: 1.2rem;
 }

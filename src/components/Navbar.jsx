@@ -20,9 +20,20 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'Services', path: '/services' },
+        {
+            name: 'Engineering Services',
+            path: '/services',
+            dropdown: [
+                { name: 'Pre-Project Activities', path: '/services/pre-project-activities' },
+                { name: 'Product Design & Development', path: '/services/product-development' },
+                { name: 'Engineering Services', path: '/services/engineering-services-detail' },
+                { name: 'Project Management', path: '/services/project-management' },
+                { name: 'Site Activities', path: '/services/site-activities' },
+                { name: 'Equipment Maintenance', path: '/services/maintenance-retrofits' }
+            ]
+        },
         { name: 'Equipment Manufacturing', path: '/equipment-manufacturing' },
-        { name: 'Automation', path: '/services/automation' },
+        { name: 'Automation', path: '/automation' },
         { name: 'Advance Technologies', path: '/advance-technologies' },
         { name: 'Careers', path: '/careers' },
         { name: 'Contact Us', path: '/contact' }
@@ -31,8 +42,6 @@ const Navbar = () => {
     const isActive = (path) => {
         if (path === location.pathname) return true;
         if (path === '/' && location.pathname !== '/') return false;
-        // Prevent 'Services' from being active when 'Automation' is active
-        if (path === '/services' && location.pathname.startsWith('/services/automation')) return false;
         return location.pathname.startsWith(path);
     };
 
@@ -55,13 +64,13 @@ const Navbar = () => {
                         whileHover={{ rotate: 10, scale: 1.1 }}
                         transition={{ duration: 0.3 }}
                     />
-                    <span className="logo-text">Elation</span>
+                    <span className="logo-text">Elation Engineering Pvt. Ltd.</span>
                 </Link>
 
                 {/* Desktop Navigation */}
                 <ul className="navbar-links desktop-only">
                     {navLinks.map((link) => (
-                        <li key={link.name}>
+                        <li key={link.name} className={link.dropdown ? 'has-dropdown' : ''}>
                             <Link
                                 to={link.path}
                                 className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
@@ -75,6 +84,18 @@ const Navbar = () => {
                                     />
                                 )}
                             </Link>
+
+                            {link.dropdown && (
+                                <ul className="dropdown-menu">
+                                    {link.dropdown.map((subLink) => (
+                                        <li key={subLink.name}>
+                                            <Link to={subLink.path} className="dropdown-link">
+                                                {subLink.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </li>
                     ))}
                 </ul>
@@ -114,6 +135,21 @@ const Navbar = () => {
                                     >
                                         {link.name}
                                     </Link>
+                                    {link.dropdown && (
+                                        <ul className="mobile-dropdown">
+                                            {link.dropdown.map(subLink => (
+                                                <li key={subLink.name}>
+                                                    <Link
+                                                        to={subLink.path}
+                                                        className="mobile-sub-link"
+                                                        onClick={() => setIsMobileMenuOpen(false)}
+                                                    >
+                                                        {subLink.name}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </motion.li>
                             ))}
                         </ul>

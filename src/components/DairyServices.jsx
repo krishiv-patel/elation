@@ -17,7 +17,7 @@ const DairyServices = () => {
         {
             id: 1,
             title: 'Milk Processing',
-            description: 'Complete solutions for liquid milk, paneer, curd, butter, ice-cream, and aseptic processing.',
+            description: 'Complete solutions for liquid milk, paneer, curd, butter, ice-cream, aseptic processing, and indigenous sweets.',
             icon: FaGlassMartini,
             route: '/services/milk-processing',
             image: milkImg,
@@ -95,8 +95,7 @@ const DairyServices = () => {
         <section className="dairy-services" id="services">
             <div className="container">
                 <div className="section-header">
-                    <h2 className="section-title">Our Services</h2>
-                    <p className="section-subtitle">
+                    <p className="section-subtitle section-subtitle-large">
                         Engineering excellence for the modern food industry.
                     </p>
                 </div>
