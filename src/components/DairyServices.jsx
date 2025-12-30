@@ -8,6 +8,7 @@ import beverageImg from '../assets/services/beverage-processing.png';
 import fruitVegImg from '../assets/services/fruit-vegetable.png';
 import foodImg from '../assets/services/food-processing.png';
 import packagingImg from '../assets/services/packaging-conveying.png';
+import utilitiesImg from '../assets/services/utilities-modern.png';
 
 const DairyServices = () => {
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ const DairyServices = () => {
         {
             id: 4,
             title: 'Food Processing',
-            description: 'Rice, dal, bakery products, ready-to-cook meals, and millet-based product processing.',
+            description: 'Chocolate, spices, bakery products, ready-to-eat meals, millets, and high-protein products.',
             icon: FaUtensils,
             route: '/services/food-processing',
             image: foodImg,
@@ -65,7 +66,7 @@ const DairyServices = () => {
             description: 'Water treatment, waste water treatment, refrigeration, boiler & steam generation, and air compression systems.',
             icon: FaWater,
             route: '/services/utilities',
-            image: milkImg,
+            image: utilitiesImg,
             color: '#2dd4bf' // Teal
         }
     ];

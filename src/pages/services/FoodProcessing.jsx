@@ -1,40 +1,40 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
-import { FaCheckCircle, FaBreadSlice, FaSeedling, FaUtensils, FaIndustry, FaShieldAlt, FaChartLine } from 'react-icons/fa';
+import { FaCheckCircle, FaBreadSlice, FaSeedling, FaUtensils, FaIndustry, FaShieldAlt, FaChartLine, FaCandyCane, FaMortarPestle, FaDumbbell } from 'react-icons/fa';
 import './ServiceDetail.css';
 
 const FoodProcessing = () => {
     const services = [
         {
-            title: 'Rice Processing',
-            description: 'Modern rice milling and polishing lines for high-yield production.',
-            icon: FaSeedling
+            title: 'Chocolate Processing',
+            description: 'Complete processing lines for chocolate manufacturing, conching, tempering, and molding.',
+            icon: FaCandyCane
         },
         {
-            title: 'Dal Processing',
-            description: 'Efficient pulse processing systems for cleaning, splitting, and polishing.',
-            icon: FaSeedling
+            title: 'Spices Processing',
+            description: 'Advanced grinding, blending, sterilization, and packing solutions for various spices.',
+            icon: FaMortarPestle
         },
         {
-            title: 'Ready-to-Eat (RTE)',
-            description: 'Processing lines for convenience foods, retort pouches, and instant meals.',
+            title: 'Ready to Cook & Ready to Eat',
+            description: 'Processing lines for convenience foods, retort pouches, instant meals, and premixes.',
             icon: FaUtensils
         },
         {
             title: 'Bakery Production',
-            description: 'Automated lines for biscuits, cookies, breads, and other baked goods.',
+            description: 'Automated lines for biscuits, cookies, breads, cakes, and other baked goods.',
             icon: FaBreadSlice
         },
         {
             title: 'Millet Processing',
-            description: 'Specialized equipment for processing various types of millets.',
+            description: 'Specialized equipment for dehulling, polishing, and processing various types of millets.',
             icon: FaSeedling
         },
         {
-            title: 'Flour Milling',
-            description: 'Advanced flour milling solutions for wheat and other grains.',
-            icon: FaIndustry
+            title: 'High Protein Products',
+            description: 'Advanced processing solutions for plant-based proteins, protein bars, and supplements.',
+            icon: FaDumbbell
         }
     ];
 

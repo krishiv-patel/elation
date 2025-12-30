@@ -20,7 +20,7 @@ const Footer = () => {
                     {/* Brand Section */}
                     <div className="footer-brand">
                         <div className="footer-logo">
-                            <span className="footer-logo-text">Elation</span>
+                            <span className="footer-logo-text">Elation Engineering Private Limited</span>
                         </div>
                         <p className="footer-tagline">
                             Engineering Excellence for Modern Industries

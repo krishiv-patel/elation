@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../components/shared/PageHero';
-import { FaIndustry, FaFire, FaCog, FaWarehouse, FaFlask } from 'react-icons/fa';
+import { FaIndustry, FaFire, FaCog, FaWarehouse, FaFlask, FaCogs } from 'react-icons/fa';
 import './services/ServiceDetail.css';
 
 const EquipmentManufacturing = () => {
@@ -60,6 +60,17 @@ const EquipmentManufacturing = () => {
                 'Precision-built coil vessels'
             ],
             icon: FaFlask
+        },
+        {
+            title: 'Process Skids',
+            description: 'Modular process skids engineered for specific process requirements deliver compact design, easy operation, enhanced cleanability, and flexibility for future expansion. We offer both standard and custom-engineered skid solutions to meet diverse application needs.',
+            details: [
+                'Seamless integration with existing systems',
+                'Fully pre-wired control system',
+                'Faster commissioning & testing',
+                'Complete plug-and-play solution'
+            ],
+            icon: FaCogs
         }
     ];
 
@@ -103,7 +114,7 @@ const EquipmentManufacturing = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/images/equipment_manufacturing_branded.png"
+                                src="/images/equipment_manufacturing_modern.png"
                                 alt="Equipment Manufacturing Facility"
                                 className="service-image"
                                 onError={(e) => {
