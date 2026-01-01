@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
 import { FaCog, FaIndustry, FaCheckCircle, FaRobot } from 'react-icons/fa';
+import automationImg from '../../assets/services/automation-services.png';
 import './ServiceDetail.css';
 
 const Automation = () => {
@@ -108,7 +109,7 @@ const Automation = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/brain/b6d4a4bb-9e7e-4af4-9d09-c8b3572b678a/automation_industrial_scene_1763708182279.png"
+                                src={automationImg}
                                 alt="Industrial Automation"
                                 className="service-image"
                                 onError={(e) => {
