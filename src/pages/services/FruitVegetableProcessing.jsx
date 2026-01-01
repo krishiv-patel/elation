@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
 import { FaCheckCircle, FaLeaf, FaCarrot, FaAppleAlt, FaIndustry, FaRecycle, FaTemperatureLow } from 'react-icons/fa';
+import fruitVegetableImg from '../../assets/services/fruit-vegetable.png';
 import './ServiceDetail.css';
 
 const FruitVegetableProcessing = () => {
@@ -96,7 +97,7 @@ const FruitVegetableProcessing = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/src/assets/services/fruit-vegetable.png"
+                                src={fruitVegetableImg}
                                 alt="Fruit and Vegetable Processing"
                                 className="service-image"
                                 onError={(e) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
 import { FaCheckCircle, FaBoxOpen, FaCogs, FaShippingFast, FaIndustry, FaExpandArrowsAlt, FaSearch } from 'react-icons/fa';
+import packagingConveyingImg from '../../assets/services/packaging-conveying.png';
 import './ServiceDetail.css';
 
 const PackagingConveying = () => {
@@ -96,7 +97,7 @@ const PackagingConveying = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/src/assets/services/packaging-conveying.png"
+                                src={packagingConveyingImg}
                                 alt="Packaging Line"
                                 className="service-image"
                                 onError={(e) => {

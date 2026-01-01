@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
 import { FaCheckCircle, FaWineBottle, FaLeaf, FaTint, FaGlassCheers, FaIndustry, FaCogs, FaFlask, FaTemperatureHigh, FaBoxOpen, FaWater } from 'react-icons/fa';
+import beverageProcessingImg from '../../assets/services/beverage-processing.png';
 import './ServiceDetail.css';
 
 const BeverageProcessing = () => {
@@ -98,7 +99,7 @@ const BeverageProcessing = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/src/assets/services/beverage-processing.png"
+                                src={beverageProcessingImg}
                                 alt="Beverage Processing Line"
                                 className="service-image"
                                 onError={(e) => {

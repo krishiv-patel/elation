@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
 import { FaCheckCircle, FaIndustry, FaFlask, FaSnowflake, FaTint, FaCogs, FaCookie } from 'react-icons/fa';
+import milkProcessingImg from '../../assets/services/milk-processing.png';
 import './ServiceDetail.css';
 
 const MilkProcessing = () => {
@@ -96,7 +97,7 @@ const MilkProcessing = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/src/assets/services/milk-processing.png"
+                                src={milkProcessingImg}
                                 alt="Milk Processing Plant"
                                 className="service-image"
                                 onError={(e) => {

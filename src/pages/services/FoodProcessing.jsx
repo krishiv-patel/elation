@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/shared/PageHero';
 import { FaCheckCircle, FaBreadSlice, FaSeedling, FaUtensils, FaIndustry, FaShieldAlt, FaChartLine, FaCandyCane, FaMortarPestle, FaDumbbell } from 'react-icons/fa';
+import foodProcessingImg from '../../assets/services/food-processing.png';
 import './ServiceDetail.css';
 
 const FoodProcessing = () => {
@@ -101,7 +102,7 @@ const FoodProcessing = () => {
                     >
                         <div className="service-image-wrapper">
                             <img
-                                src="/src/assets/services/food-processing.png"
+                                src={foodProcessingImg}
                                 alt="Food Processing Plant"
                                 className="service-image"
                                 onError={(e) => {
