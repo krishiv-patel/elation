@@ -10,14 +10,31 @@ const Navbar = () => {
     const [activeMobileDropdown, setActiveMobileDropdown] = useState(null);
     const location = useLocation();
 
+    // Scroll detection
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
-
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Robust Body Scroll Lock
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.classList.add('no-scroll');
+            document.documentElement.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+            document.documentElement.classList.remove('no-scroll');
+        }
+
+        // Cleanup
+        return () => {
+            document.body.classList.remove('no-scroll');
+            document.documentElement.classList.remove('no-scroll');
+        };
+    }, [isMobileMenuOpen]);
 
     const navLinks = [
         { name: 'Home', path: '/' },
@@ -51,23 +68,16 @@ const Navbar = () => {
         setActiveMobileDropdown(activeMobileDropdown === name ? null : name);
     };
 
+    const handleMobileLinkClick = () => {
+        setIsMobileMenuOpen(false);
+    };
+
     return (
-        <motion.nav
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            className={`navbar ${isScrolled ? 'scrolled' : ''}`}
-        >
+        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
             <div className="container navbar-container">
                 {/* Logo */}
-                <Link
-                    to="/"
-                    className="navbar-logo"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                >
-                    <motion.img
-                        src="/logo.png"
-                        alt="Elation"
-                    />
+                <Link to="/" className="navbar-logo" onClick={() => setIsMobileMenuOpen(false)}>
+                    <img src="/logo.png" alt="Elation" />
                     <span className="logo-text">Elation Engineering Pvt. Ltd.</span>
                 </Link>
 
@@ -104,100 +114,76 @@ const Navbar = () => {
                     ))}
                 </ul>
 
-                {/* Mobile Menu Button - Z-index adjusted to be above overlay */}
+                {/* Mobile Menu Toggle Button */}
                 <button
                     className={`mobile-menu-button mobile-only ${isMobileMenuOpen ? 'active' : ''}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    aria-label="Toggle menu"
-                    style={{ zIndex: 2001 }}
+                    aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                 >
                     {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
                 </button>
             </div>
 
-            {/* Mobile Menu Overlay */}
+            {/* Clean Mobile Overlay */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, x: '100%' }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: '100%' }}
-                        transition={{ type: 'tween', duration: 0.3 }}
-                        className="mobile-menu-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="mobile-overlay"
                     >
-                        <div className="mobile-menu-content">
-                            <div className="mobile-menu-header">
-                                <Link
-                                    to="/"
-                                    className="navbar-logo mobile-logo"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    <img src="/logo.png" alt="Elation" />
-                                    <span className="logo-text">Elation Engineering</span>
-                                </Link>
-                            </div>
-
-                            <ul className="mobile-nav-links">
-                                {navLinks.map((link, index) => (
-                                    <motion.li
-                                        key={link.name}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.1 + index * 0.1 }}
-                                    >
-                                        {link.dropdown ? (
-                                            <div className="mobile-dropdown-container">
-                                                <div
-                                                    className={`mobile-nav-link-header ${isActive(link.path) ? 'active' : ''}`}
-                                                    onClick={() => toggleMobileDropdown(link.name)}
-                                                    role="button"
-                                                    tabIndex={0}
-                                                >
-                                                    <span className="mobile-nav-link-text">{link.name}</span>
-                                                    <FaChevronDown
-                                                        className={`mobile-chevron ${activeMobileDropdown === link.name ? 'open' : ''}`}
-                                                    />
-                                                </div>
-                                                <AnimatePresence>
-                                                    {activeMobileDropdown === link.name && (
-                                                        <motion.ul
-                                                            initial={{ opacity: 0, height: 0 }}
-                                                            animate={{ opacity: 1, height: 'auto' }}
-                                                            exit={{ opacity: 0, height: 0 }}
-                                                            className="mobile-dropdown"
-                                                        >
-                                                            {link.dropdown.map(subLink => (
-                                                                <li key={subLink.name}>
-                                                                    <Link
-                                                                        to={subLink.path}
-                                                                        className="mobile-sub-link"
-                                                                        onClick={() => setIsMobileMenuOpen(false)}
-                                                                    >
-                                                                        {subLink.name}
-                                                                    </Link>
-                                                                </li>
-                                                            ))}
-                                                        </motion.ul>
-                                                    )}
-                                                </AnimatePresence>
-                                            </div>
-                                        ) : (
-                                            <Link
-                                                to={link.path}
-                                                className={`mobile-nav-link ${isActive(link.path) ? 'active' : ''}`}
-                                                onClick={() => setIsMobileMenuOpen(false)}
+                        <ul className="mobile-menu-list">
+                            {navLinks.map((link) => (
+                                <li key={link.name} className="mobile-item">
+                                    {link.dropdown ? (
+                                        <div>
+                                            <div
+                                                className={`mobile-link ${isActive(link.path) ? 'active' : ''}`}
+                                                onClick={() => toggleMobileDropdown(link.name)}
                                             >
                                                 {link.name}
-                                            </Link>
-                                        )}
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </div>
+                                                <FaChevronDown className={`mobile-chevron ${activeMobileDropdown === link.name ? 'open' : ''}`} />
+                                            </div>
+
+                                            {/* Dropdown Content */}
+                                            {activeMobileDropdown === link.name && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: "auto", opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    className="mobile-dropdown-content"
+                                                >
+                                                    {link.dropdown.map(subLink => (
+                                                        <Link
+                                                            key={subLink.name}
+                                                            to={subLink.path}
+                                                            className="mobile-sublink"
+                                                            onClick={handleMobileLinkClick}
+                                                        >
+                                                            {subLink.name}
+                                                        </Link>
+                                                    ))}
+                                                </motion.div>
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <Link
+                                            to={link.path}
+                                            className={`mobile-link ${isActive(link.path) ? 'active' : ''}`}
+                                            onClick={handleMobileLinkClick}
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.nav>
+        </nav>
     );
 };
 

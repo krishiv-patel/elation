@@ -8,6 +8,7 @@ const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
+    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
@@ -18,6 +19,24 @@ const Header = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Robust Body Scroll Lock
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.classList.add('no-scroll');
+            document.documentElement.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+            document.documentElement.classList.remove('no-scroll');
+        }
+
+        // Cleanup
+        return () => {
+            document.body.classList.remove('no-scroll');
+            document.documentElement.classList.remove('no-scroll');
+            setMobileDropdownOpen(false); // Reset dropdown when menu closes
+        };
+    }, [isMobileMenuOpen]);
 
     const serviceLinks = [
         {
@@ -175,27 +194,50 @@ const Header = () => {
                         <ul className="mobile-nav-links">
                             {navLinks.map((link) => (
                                 <li key={link.name}>
-                                    <Link
-                                        to={link.path}
-                                        className="mobile-nav-link"
-                                        onClick={() => !link.hasDropdown && setIsMobileMenuOpen(false)}
-                                    >
-                                        {link.name}
-                                    </Link>
-                                    {link.hasDropdown && (
-                                        <div className="mobile-dropdown">
-                                            {serviceLinks.map((service) => (
-                                                <Link
-                                                    key={service.path}
-                                                    to={service.path}
-                                                    className="mobile-dropdown-link"
-                                                    onClick={() => setIsMobileMenuOpen(false)}
-                                                >
-                                                    {service.icon}
-                                                    <span>{service.name}</span>
-                                                </Link>
-                                            ))}
-                                        </div>
+                                    {link.hasDropdown ? (
+                                        <>
+                                            <div
+                                                className="mobile-nav-link-header"
+                                                onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                                            >
+                                                <span className={mobileDropdownOpen ? 'active-text' : ''}>{link.name}</span>
+                                                <FaChevronDown className={`mobile-chevron ${mobileDropdownOpen ? 'open' : ''}`} />
+                                            </div>
+                                            <AnimatePresence>
+                                                {mobileDropdownOpen && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: "auto", opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        transition={{ duration: 0.3 }}
+                                                        className="mobile-dropdown-wrapper"
+                                                        style={{ overflow: 'hidden' }}
+                                                    >
+                                                        <div className="mobile-dropdown">
+                                                            {serviceLinks.map((service) => (
+                                                                <Link
+                                                                    key={service.path}
+                                                                    to={service.path}
+                                                                    className="mobile-dropdown-link"
+                                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                                >
+                                                                    {service.icon}
+                                                                    <span>{service.name}</span>
+                                                                </Link>
+                                                            ))}
+                                                        </div>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </>
+                                    ) : (
+                                        <Link
+                                            to={link.path}
+                                            className="mobile-nav-link"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            {link.name}
+                                        </Link>
                                     )}
                                 </li>
                             ))}
@@ -203,7 +245,7 @@ const Header = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.nav >
+        </motion.nav>
     );
 };
 
