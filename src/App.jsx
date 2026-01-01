@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 import PageLayout from './components/layout/PageLayout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -28,58 +29,60 @@ import FoodProcessing from './pages/services/FoodProcessing';
 import PackagingConveying from './pages/services/PackagingConveying';
 import Utilities from './pages/services/Utilities';
 
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
-import CookiePolicy from './pages/CookiePolicy';
-
-import ScrollToTop from './components/shared/ScrollToTop';
 import NotFound from './pages/NotFound';
+import ScrollToTop from './components/shared/ScrollToTop';
+
+// Lazy load legal pages to prevent adblocker crashes
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <PageLayout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/equipment-manufacturing" element={<EquipmentManufacturing />} />
-          <Route path="/advance-technologies" element={<AdvanceTechnologies />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/automation" element={<Automation />} />
-          <Route path="/services/healthcare" element={<Healthcare />} />
-          <Route path="/services/design" element={<Design />} />
-          <Route path="/services/startups" element={<Startups />} />
-          <Route path="/services/ppso" element={<PPSO />} />
-          <Route path="/services/product-development" element={<ProductDevelopment />} />
+        <Suspense fallback={<div style={{ height: '100vh' }}></div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/equipment-manufacturing" element={<EquipmentManufacturing />} />
+            <Route path="/advance-technologies" element={<AdvanceTechnologies />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/automation" element={<Automation />} />
 
-          {/* Engineering Services Routes */}
-          <Route path="/services/pre-project-activities" element={<PreProjectActivities />} />
-          <Route path="/services/engineering-services-detail" element={<EngineeringServicesDetail />} />
-          <Route path="/services/project-management" element={<ProjectManagement />} />
-          <Route path="/services/site-activities" element={<SiteActivities />} />
-          <Route path="/services/maintenance-retrofits" element={<MaintenanceRetrofits />} />
+            {/* Services Routes */}
+            <Route path="/services/healthcare" element={<Healthcare />} />
+            <Route path="/services/design" element={<Design />} />
+            <Route path="/services/startups" element={<Startups />} />
+            <Route path="/services/ppso" element={<PPSO />} />
+            <Route path="/services/product-development" element={<ProductDevelopment />} />
+            <Route path="/services/pre-project-activities" element={<PreProjectActivities />} />
+            <Route path="/services/engineering-services-detail" element={<EngineeringServicesDetail />} />
+            <Route path="/services/project-management" element={<ProjectManagement />} />
+            <Route path="/services/site-activities" element={<SiteActivities />} />
+            <Route path="/services/maintenance-retrofits" element={<MaintenanceRetrofits />} />
 
-          {/* Dairy-focused service routes */}
-          <Route path="/services/milk-processing" element={<MilkProcessing />} />
-          <Route path="/services/beverage-processing" element={<BeverageProcessing />} />
-          <Route path="/services/fruit-vegetable-processing" element={<FruitVegetableProcessing />} />
-          <Route path="/services/food-processing" element={<FoodProcessing />} />
-          <Route path="/services/packaging-conveying" element={<PackagingConveying />} />
-          <Route path="/services/utilities" element={<Utilities />} />
+            {/* Dairy-focused service routes */}
+            <Route path="/services/milk-processing" element={<MilkProcessing />} />
+            <Route path="/services/beverage-processing" element={<BeverageProcessing />} />
+            <Route path="/services/fruit-vegetable-processing" element={<FruitVegetableProcessing />} />
+            <Route path="/services/food-processing" element={<FoodProcessing />} />
+            <Route path="/services/packaging-conveying" element={<PackagingConveying />} />
+            <Route path="/services/utilities" element={<Utilities />} />
 
-          <Route path="/industries" element={<Industries />} />
-          <Route path="/contact" element={<Contact />} />
+            <Route path="/industries" element={<Industries />} />
+            <Route path="/contact" element={<Contact />} />
 
-          {/* Legal Pages */}
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-          <Route path="/cookie-policy" element={<CookiePolicy />} />
+            {/* Legal Pages */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </PageLayout>
     </Router>
   );
