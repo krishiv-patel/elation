@@ -87,7 +87,7 @@ const Contact = () => {
                             </div>
                             <div className="contact-info-content">
                                 <h4>Email</h4>
-                                <p>contactus.elation@gmail.com</p>
+                                <p>contactus.elation@gmail.com<br />info@elationengg.com</p>
                             </div>
                         </div>
                     </motion.div>

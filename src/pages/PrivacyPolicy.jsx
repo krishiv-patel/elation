@@ -83,7 +83,7 @@ const PrivacyPolicy = () => {
                             }}>
                                 <h4 style={{ color: '#1e3a8a', marginBottom: '0.5rem' }}>Have Questions?</h4>
                                 <p style={{ color: '#1e40af', margin: 0 }}>
-                                    If you have any questions about this Privacy Policy, please contact us at <a href="mailto:contactus.elation@gmail.com" style={{ fontWeight: 'bold', textDecoration: 'underline' }}>contactus.elation@gmail.com</a>.
+                                    If you have any questions about this Privacy Policy, please contact us at <a href="mailto:contactus.elation@gmail.com" style={{ fontWeight: 'bold', textDecoration: 'underline' }}>contactus.elation@gmail.com</a> or <a href="mailto:info@elationengg.com" style={{ fontWeight: 'bold', textDecoration: 'underline' }}>info@elationengg.com</a>.
                                 </p>
                             </div>
                         </div>

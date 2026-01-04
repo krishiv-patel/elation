@@ -97,7 +97,7 @@ const Footer = () => {
                         </p>
                         <p className="footer-contact-item">
                             <FaEnvelope className="footer-icon" />
-                            <span>contactus.elation@gmail.com</span>
+                            <span>contactus.elation@gmail.com<br />info@elationengg.com</span>
                         </p>
                         <p className="footer-contact-item">
                             <FaPhone className="footer-icon" />
