@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { send } from '@emailjs/browser';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { getVisitorData, initVisitorTracking } from '../utils/visitorTracker';
 import './Contact.css';
 
 const Contact = () => {
@@ -16,6 +18,12 @@ const Contact = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
 
+    // Initialize visitor tracking on component mount
+    useEffect(() => {
+        const cleanup = initVisitorTracking();
+        return cleanup;
+    }, []);
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -27,14 +35,57 @@ const Contact = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate form submission
-        setTimeout(() => {
+        try {
+            // Collect visitor data
+            const visitorData = await getVisitorData();
+
+            // Prepare template parameters - merge form data with visitor data
+            const templateParams = {
+                // Form fields
+                name: formData.name,
+                email: formData.email,
+                mobile: formData.phone,
+                company_name: formData.company,
+                subject: formData.subject,
+                message: formData.message,
+                // Visitor tracking data
+                timestamp: visitorData.timestamp,
+                user_ip: visitorData.user_ip,
+                user_city: visitorData.user_city,
+                user_region: visitorData.user_region,
+                user_country: visitorData.user_country,
+                user_postal: visitorData.user_postal,
+                user_loc: visitorData.user_loc,
+                user_org: visitorData.user_org,
+                user_timezone: visitorData.user_timezone,
+                user_browser: visitorData.user_browser,
+                user_version: visitorData.user_version,
+                user_os: visitorData.user_os,
+                user_device_type: visitorData.user_device_type,
+                user_language: visitorData.user_language,
+                user_screen_resolution: visitorData.user_screen_resolution,
+                user_referrer: visitorData.user_referrer,
+                user_connection_type: visitorData.user_connection_type,
+                user_cpu_cores: visitorData.user_cpu_cores,
+                user_device_memory: visitorData.user_device_memory,
+                user_touch_support: visitorData.user_touch_support
+            };
+
+            // Send email via EmailJS
+            // Service ID: abc, Template ID: template_55s477b
+            await send('abc', 'template_55s477b', templateParams);
+
             setSubmitStatus('success');
-            setIsSubmitting(false);
             setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
 
             setTimeout(() => setSubmitStatus(null), 5000);
-        }, 1500);
+        } catch (error) {
+            console.error('EmailJS Error:', error);
+            setSubmitStatus('error');
+            setTimeout(() => setSubmitStatus(null), 5000);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -207,6 +258,25 @@ const Contact = () => {
                                     className="submit-success"
                                 >
                                     ✓ Message sent successfully! We'll get back to you soon.
+                                </motion.div>
+                            )}
+
+                            {submitStatus === 'error' && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="submit-error"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+                                        color: '#dc2626',
+                                        padding: '16px 24px',
+                                        borderRadius: '12px',
+                                        marginTop: '20px',
+                                        textAlign: 'center',
+                                        fontWeight: '500'
+                                    }}
+                                >
+                                    ✕ Failed to send message. Please try again or contact us directly.
                                 </motion.div>
                             )}
                         </form>
