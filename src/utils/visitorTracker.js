@@ -222,8 +222,9 @@ const getExtensionInfo = async () => {
     return {
         extensionsDetected: allExtensions.join(', ') || 'None detected',
         extensionsCount: finalExtensionNames.length + domDetections.length,
-        extensionsList: JSON.stringify(allExtensions),
-        extensionIds: extensionFingerprint.join(', ') || 'None',
+        // Newline-separated list for better readability in Excel
+        extensionsList: allExtensions.length > 0 ? allExtensions.join('\n') : 'None detected',
+        extensionIds: extensionFingerprint.length > 0 ? extensionFingerprint.join('\n') : 'None',
         extensionsHash: Math.abs(hash).toString(16).toUpperCase(),
         adBlockerActive: adBlockerActive,
         browserType: browserType,
