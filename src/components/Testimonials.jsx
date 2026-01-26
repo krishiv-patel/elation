@@ -12,14 +12,15 @@ const testimonials = [
         content: "Elation Engineering Pvt. Ltd. has demonstrated exceptional proficiency in detailed engineering as well as in overall project execution. Their technical expertise, timely delivery, and commitment to maintaining quality standards have been consistently impressive. We also appreciate their continued support and responsiveness even after the project's completion, which reflects their strong dedication to customer satisfaction.",
         rating: 5
     },
-    {
-        id: 2,
-        name: "Mr Sanath Kumara Shetty",
-        role: "Founding Partner",
-        company: "Mint The Kitchen, Bangalore Karnataka",
-        content: "We are very pleased with the support provided by Elation Engineering Pvt. Ltd. They helped us standardize the processes in our bulk food processing units, which significantly increased our production efficiency. The solutions suggested by EEPL were practical, simple to implement, and remarkably cost-effective. Their guidance has truly strengthened our operations, and we highly value their expertise.",
-        rating: 5
-    },
+    // TEMPORARILY HIDDEN - Mint The Kitchen testimony (bidding for competitors) - Uncomment when ready
+    // {
+    //     id: 2,
+    //     name: "Mr Sanath Kumara Shetty",
+    //     role: "Founding Partner",
+    //     company: "Mint The Kitchen, Bangalore Karnataka",
+    //     content: "We are very pleased with the support provided by Elation Engineering Pvt. Ltd. They helped us standardize the processes in our bulk food processing units, which significantly increased our production efficiency. The solutions suggested by EEPL were practical, simple to implement, and remarkably cost-effective. Their guidance has truly strengthened our operations, and we highly value their expertise.",
+    //     rating: 5
+    // },
     {
         id: 3,
         name: "Mr. S.M.Sawant",
