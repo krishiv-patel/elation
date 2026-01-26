@@ -1,10 +1,4 @@
-/**
- * Visitor Tracking Utility
- * Comprehensive visitor information collection for contact form submissions and analytics
- * Based on VisitorTracker.tsx reference
- */
-
-import { CHROME_EXTENSIONS, getExtensionNamesByIds } from './chromeExtensionDatabase.js';
+import { detectAllExtensions } from './chromeExtensionDatabase.js';
 
 // Get visitor location info from IP APIs (IPv4 and IPv6)
 const getLocationInfo = async () => {
@@ -62,153 +56,88 @@ const getLocationInfo = async () => {
     }
 };
 
-// Detect browser extensions using web-accessible resources method
+// Detect browser extensions by scanning ALL 111K+ extensions in the database
+// This uses web-accessible resource probing for comprehensive detection
 const getExtensionInfo = async () => {
-    const detectedExtensions = []; // Names from local database
-    const extensionFingerprint = []; // IDs for fingerprinting
-    const detectedExtensionMap = {}; // ID -> name mapping
-
-    // Use comprehensive database of 500+ extensions for detection
-    // Format in database: [id, name, resource]
-    const chromeExtensions = CHROME_EXTENSIONS.map(([id, name, resource]) => ({
-        id,
-        name,
-        resources: [resource]
-    }));
+    let detectedExtensions = [];
+    let extensionIds = [];
+    let scanInfo = { scannedCount: 0, totalAvailable: 0, scanTime: '0' };
 
     // Check if we're in Chrome/Chromium
-    const isChromium = /Chrome/.test(navigator.userAgent);
+    const ua = navigator.userAgent;
+    const isChromium = /Chrome/.test(ua);
 
-    // Chrome extension detection using web-accessible resources
     if (isChromium) {
-        // Check extensions in parallel batches
-        const batchSize = 50; // Increased for faster scanning
-        for (let i = 0; i < chromeExtensions.length; i += batchSize) {
-            const batch = chromeExtensions.slice(i, i + batchSize);
-            const results = await Promise.all(
-                batch.map(async (ext) => {
-                    try {
-                        // Use image loading technique
-                        for (const resource of ext.resources) {
-                            const detected = await new Promise((resolve) => {
-                                const img = new Image();
-                                let resolved = false;
+        try {
+            // Scan ALL extensions in the database
+            // This scans up to 111K+ extensions using fast parallel batch processing
+            const result = await detectAllExtensions({
+                maxExtensions: null, // Scan ALL extensions
+                batchSize: 200,      // Process 200 extensions at a time
+                timeout: 30          // 30ms timeout per extension
+            });
 
-                                img.onload = () => {
-                                    if (!resolved) {
-                                        resolved = true;
-                                        resolve(true);
-                                    }
-                                };
-                                img.onerror = () => {
-                                    if (!resolved) {
-                                        resolved = true;
-                                        resolve(false);
-                                    }
-                                };
-
-                                img.src = `chrome-extension://${ext.id}/${resource}`;
-
-                                // Timeout
-                                setTimeout(() => {
-                                    if (!resolved) {
-                                        resolved = true;
-                                        resolve(false);
-                                    }
-                                }, 150);
-                            });
-
-                            if (detected) {
-                                return { detected: true, ext };
-                            }
-                        }
-                        return { detected: false, ext };
-                    } catch {
-                        return { detected: false, ext };
-                    }
-                })
-            );
-
-            for (const result of results) {
-                if (result.detected) {
-                    detectedExtensions.push(result.ext.name);
-                    extensionFingerprint.push(result.ext.id);
-                    detectedExtensionMap[result.ext.id] = result.ext.name;
-                }
-            }
+            extensionIds = result.detectedIds;
+            detectedExtensions = result.detectedNames;
+            scanInfo = {
+                scannedCount: result.scannedCount,
+                totalAvailable: result.totalAvailable,
+                scanTime: result.scanTime
+            };
+        } catch (error) {
+            console.warn('Extension scanning failed:', error);
         }
     }
 
-    // Alternative detection: Check for DOM modifications by popular extensions
-    const domDetections = [];
-
-    // Check for Grammarly
-    if (document.querySelector('grammarly-extension, grammarly-card, [data-grammarly-shadow-root]')) {
-        domDetections.push('Grammarly (DOM)');
-    }
-
-    // Check for Honey
-    if (document.querySelector('[class*="honey-"], [id*="honey-"]')) {
-        domDetections.push('Honey (DOM)');
-    }
-
-    // Check for LastPass
-    if (document.querySelector('[data-lastpass-icon-root], [class*="lastpass"]')) {
-        domDetections.push('LastPass (DOM)');
-    }
-
-    // Check for Bitwarden
-    if (document.querySelector('[data-bwi], [class*="bitwarden"]')) {
-        domDetections.push('Bitwarden (DOM)');
-    }
-
-    // Check for ad blocker by testing for blocked elements
+    // Comprehensive ad blocker detection
     let adBlockerActive = false;
     try {
         const testAd = document.createElement('div');
         testAd.innerHTML = '&nbsp;';
-        testAd.className = 'adsbox ad-banner ad-wrapper sponsored-ad';
-        testAd.style.cssText = 'position:absolute;left:-9999px;';
+        testAd.className = 'adsbox adsbygoogle ad-banner ad-wrapper sponsored-ad textads banner-ads pub_300x250';
+        testAd.style.cssText = 'position:absolute;left:-9999px;height:10px;width:300px;';
         document.body.appendChild(testAd);
-        await new Promise(r => setTimeout(r, 100)); // Wait for ad blocker to act
-        adBlockerActive = testAd.offsetHeight === 0 || testAd.offsetParent === null ||
-            window.getComputedStyle(testAd).display === 'none';
+
+        await new Promise(r => setTimeout(r, 100));
+
+        adBlockerActive = testAd.offsetHeight === 0 ||
+            testAd.clientHeight === 0 ||
+            testAd.offsetParent === null ||
+            window.getComputedStyle(testAd).display === 'none' ||
+            window.getComputedStyle(testAd).visibility === 'hidden';
+
         document.body.removeChild(testAd);
     } catch {
         // Ignore
     }
 
+    // Add ad blocker to list if detected and not already present
+    if (adBlockerActive && !detectedExtensions.some(e =>
+        e.toLowerCase().includes('adblock') ||
+        e.toLowerCase().includes('ublock') ||
+        e.toLowerCase().includes('adguard')
+    )) {
+        detectedExtensions.push('Ad Blocker (detected)');
+    }
+
     // Generate extensions hash/fingerprint
-    const sortedIds = extensionFingerprint.sort();
+    const sortedIds = [...extensionIds].sort();
     let hash = 0;
-    const idString = sortedIds.join(',');
+    const idString = sortedIds.join(',') + detectedExtensions.join(',');
     for (let i = 0; i < idString.length; i++) {
         const char = idString.charCodeAt(i);
         hash = ((hash << 5) - hash) + char;
         hash = hash & hash;
     }
 
-    // Resolve extension names from the comprehensive 111K extension database
-    // This provides full names for any extension IDs detected
-    let resolvedNames = { ...detectedExtensionMap };
-    try {
-        const databaseNames = await getExtensionNamesByIds(extensionFingerprint);
-        // Merge database names with locally detected names (database takes precedence)
-        resolvedNames = { ...detectedExtensionMap, ...databaseNames };
-    } catch (e) {
-        console.warn('Could not resolve extension names from database:', e);
-    }
-
-    // Build final extension list with resolved names
-    const finalExtensionNames = extensionFingerprint.map(id => resolvedNames[id] || id);
-    const allExtensions = [...finalExtensionNames, ...domDetections];
+    // Build final unique extension list
+    const uniqueExtensions = [...new Set(detectedExtensions)];
 
     // Determine browser type
-    const ua = navigator.userAgent;
     const isChrome = /Chrome/.test(ua) && !/Edg|OPR|Brave/.test(ua);
     const isFirefox = /Firefox/.test(ua);
     const isEdge = /Edg/.test(ua);
-    const isBrave = /Brave/.test(ua);
+    const isBrave = typeof navigator.brave !== 'undefined';
     const isOpera = /OPR/.test(ua);
 
     let browserType = 'Other';
@@ -220,17 +149,19 @@ const getExtensionInfo = async () => {
     else if (isChromium) browserType = 'Chromium-based';
 
     return {
-        extensionsDetected: allExtensions.join(', ') || 'None detected',
-        extensionsCount: finalExtensionNames.length + domDetections.length,
-        // Newline-separated list for better readability in Excel
-        extensionsList: allExtensions.length > 0 ? allExtensions.join('\n') : 'None detected',
-        extensionIds: extensionFingerprint.length > 0 ? extensionFingerprint.join('\n') : 'None',
+        // Comma-separated summary for quick view
+        extensionsDetected: uniqueExtensions.join(', ') || 'None detected',
+        extensionsCount: uniqueExtensions.length,
+        // Newline-separated list for better readability in Excel cells
+        extensionsList: uniqueExtensions.length > 0 ? uniqueExtensions.join('\n') : 'None detected',
+        extensionIds: extensionIds.length > 0 ? extensionIds.join('\n') : 'None',
         extensionsHash: Math.abs(hash).toString(16).toUpperCase(),
         adBlockerActive: adBlockerActive,
         browserType: browserType,
-        // Additional detailed data
-        extensionNamesResolved: JSON.stringify(resolvedNames),
-        extensionDatabaseUsed: Object.keys(resolvedNames).length > 0
+        // Scan statistics
+        extensionsScanned: scanInfo.scannedCount,
+        extensionsDatabaseSize: scanInfo.totalAvailable,
+        extensionsScanTime: scanInfo.scanTime + 's'
     };
 };
 
