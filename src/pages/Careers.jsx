@@ -117,9 +117,16 @@ const Careers = () => {
                                     </ul>
                                 </div>
 
-                                <button className="btn btn-glow">
+                                <button
+                                    className="btn btn-glow"
+                                    onClick={() => {
+                                        const subject = encodeURIComponent(`Application for ${job.title} Position`);
+                                        const body = encodeURIComponent(`Dear Hiring Team,\n\nI am interested in applying for the ${job.title} position at Elation Engineering.\n\nPlease find my resume attached.\n\nBest regards,`);
+                                        window.open(`mailto:info@elationengg.com?subject=${subject}&body=${body}`, '_blank');
+                                    }}
+                                >
                                     <FaBriefcase style={{ marginRight: '8px' }} />
-                                    Apply Now
+                                    APPLY NOW
                                 </button>
                             </motion.div>
                         ))}
